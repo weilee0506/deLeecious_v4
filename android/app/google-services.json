@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "665550343037",
+    "project_id": "omega-granite-164507",
+    "storage_bucket": "omega-granite-164507.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:665550343037:android:6f6e5948cb8d7c9961da14",
+        "android_client_info": {
+          "package_name": "com.example.deleecious_v4"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "665550343037-s2s8315nmfh79il0dusmrjmm8k7isa8e.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDEwtx-lP6FBzRTFDQtzcUJNLDyvUNLkgI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "665550343037-s2s8315nmfh79il0dusmrjmm8k7isa8e.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "665550343037-8ur16uucermedin9npikl3tnt6c5fb4g.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.deleeciousV4"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
