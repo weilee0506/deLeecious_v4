@@ -79,6 +79,8 @@ class _ButtonSetState extends State<ButtonSet> {
   }
 
   void startRecommendation(BuildContext context) {
+    print(
+        'start     ${Provider.of<Login>(context, listen: false).selectedIntentionFactorSet}');
     CollectionReference usersEvent =
         FirebaseFirestore.instance.collection('usersEvent');
     usersEvent.doc('6Kme8kTW8NvQwWYw5uVT').update({
@@ -114,86 +116,93 @@ class _ButtonSetState extends State<ButtonSet> {
                   content: Container(
                     width: MediaQuery.of(context).size.height * 0.8,
                     height: MediaQuery.of(context).size.height * 0.4,
-                    child: Column(
-                      children: <Widget>[
-                        buildContainer(
-                          context,
-                          login.selectedIntentionFactorSet[0]
-                              ['intentionFactors'][0]['intentionFactorName'],
-                          login.selectedIntentionFactorSet[0]
-                              ['intentionFactors'][0]['intentionFactorStatus'],
-                          (bool) {
-                            setState(
-                              () {
-                                login.changeStatusAndSelected(0, bool);
-                              },
-                            );
-                          },
-                        ),
-                        buildContainer(
-                          context,
-                          login.selectedIntentionFactorSet[0]
-                              ['intentionFactors'][1]['intentionFactorName'],
-                          login.selectedIntentionFactorSet[0]
-                              ['intentionFactors'][1]['intentionFactorStatus'],
-                          (bool) {
-                            setState(
-                              () {
-                                login.changeStatusAndSelected(1, bool);
-                              },
-                            );
-                          },
-                        ),
-                        buildContainer(
-                          context,
-                          login.selectedIntentionFactorSet[0]
-                              ['intentionFactors'][2]['intentionFactorName'],
-                          login.selectedIntentionFactorSet[0]
-                              ['intentionFactors'][2]['intentionFactorStatus'],
-                          (bool) {
-                            setState(
-                              () {
-                                login.changeStatusAndSelected(2, bool);
-                              },
-                            );
-                          },
-                        ),
-                        buildContainer(
-                          context,
-                          login.selectedIntentionFactorSet[0]
-                              ['intentionFactors'][3]['intentionFactorName'],
-                          login.selectedIntentionFactorSet[0]
-                              ['intentionFactors'][3]['intentionFactorStatus'],
-                          (bool) {
-                            setState(
-                              () {
-                                login.changeStatusAndSelected(3, bool);
-                              },
-                            );
-                          },
-                        ),
-                        buildContainer(
-                          context,
-                          login.selectedIntentionFactorSet[0]
-                              ['intentionFactors'][4]['intentionFactorName'],
-                          login.selectedIntentionFactorSet[0]
-                              ['intentionFactors'][4]['intentionFactorStatus'],
-                          (bool) {
-                            setState(
-                              () {
-                                login.changeStatusAndSelected(4, bool);
-                              },
-                            );
-                          },
-                        ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          children: <Widget>[
-                            buildTextButton(
-                                context, '確定', () => confirmEdit(context)),
-                          ],
-                        )
-                      ],
+                    child: SingleChildScrollView(
+                      child: Column(
+                        children: <Widget>[
+                          buildContainer(
+                            context,
+                            login.selectedIntentionFactorSet[0]
+                                ['intentionFactors'][0]['intentionFactorName'],
+                            login.selectedIntentionFactorSet[0]
+                                    ['intentionFactors'][0]
+                                ['intentionFactorStatus'],
+                            (bool) {
+                              setState(
+                                () {
+                                  login.changeStatusAndSelected(0, bool);
+                                },
+                              );
+                            },
+                          ),
+                          buildContainer(
+                            context,
+                            login.selectedIntentionFactorSet[0]
+                                ['intentionFactors'][1]['intentionFactorName'],
+                            login.selectedIntentionFactorSet[0]
+                                    ['intentionFactors'][1]
+                                ['intentionFactorStatus'],
+                            (bool) {
+                              setState(
+                                () {
+                                  login.changeStatusAndSelected(1, bool);
+                                },
+                              );
+                            },
+                          ),
+                          buildContainer(
+                            context,
+                            login.selectedIntentionFactorSet[0]
+                                ['intentionFactors'][2]['intentionFactorName'],
+                            login.selectedIntentionFactorSet[0]
+                                    ['intentionFactors'][2]
+                                ['intentionFactorStatus'],
+                            (bool) {
+                              setState(
+                                () {
+                                  login.changeStatusAndSelected(2, bool);
+                                },
+                              );
+                            },
+                          ),
+                          buildContainer(
+                            context,
+                            login.selectedIntentionFactorSet[0]
+                                ['intentionFactors'][3]['intentionFactorName'],
+                            login.selectedIntentionFactorSet[0]
+                                    ['intentionFactors'][3]
+                                ['intentionFactorStatus'],
+                            (bool) {
+                              setState(
+                                () {
+                                  login.changeStatusAndSelected(3, bool);
+                                },
+                              );
+                            },
+                          ),
+                          buildContainer(
+                            context,
+                            login.selectedIntentionFactorSet[0]
+                                ['intentionFactors'][4]['intentionFactorName'],
+                            login.selectedIntentionFactorSet[0]
+                                    ['intentionFactors'][4]
+                                ['intentionFactorStatus'],
+                            (bool) {
+                              setState(
+                                () {
+                                  login.changeStatusAndSelected(4, bool);
+                                },
+                              );
+                            },
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            children: <Widget>[
+                              buildTextButton(
+                                  context, '確定', () => confirmEdit(context)),
+                            ],
+                          )
+                        ],
+                      ),
                     ),
                   ),
                 );
@@ -426,60 +435,68 @@ class _ButtonSetState extends State<ButtonSet> {
   }
 
   void confirmSave() async {
-    final prefs = await SharedPreferences.getInstance();
-    var path = prefs.getString('userEmail');
-    // Provider.of<Login>(context, listen: false)
-    //     .userData['userIntentionFactorSets']
-    //     .last['userIntentionFactorSetName'] = saveInputController.text;
-    // Provider.of<Login>(context, listen: false)
-    //     .userData['userIntentionFactorSets']
-    //     .last['userIntentionFactorSetContext'] = currentContext;
-    if (Provider.of<Login>(context, listen: false)
-        .fitContextIntentionFactorSetsName
-        .contains(saveInputController.text)) {
-      saveInputController.text = saveInputController.text +
-          '-' +
-          DateFormat.Hms().format(DateTime.now()) +
-          '-' +
-          DateFormat.Md().format(DateTime.now());
-    }
-    Provider.of<Login>(context, listen: false).selectedIntentionFactorSet[0]
-        ['userIntentionFactorSetName'] = saveInputController.text;
-    Provider.of<Login>(context, listen: false).selectedIntentionFactorSet[0]
-        ['userIntentionFactorSetContext'] = currentContext;
-    // Provider.of<Login>(context, listen: false).selectedIntentionFactorSetName =
-    //     saveInputController.text;
+    if (saveInputController.text.isEmpty) {}
+    if (saveInputController.text.isNotEmpty) {
+      final prefs = await SharedPreferences.getInstance();
+      var path = prefs.getString('userEmail');
+      // Provider.of<Login>(context, listen: false)
+      //     .userData['userIntentionFactorSets']
+      //     .last['userIntentionFactorSetName'] = saveInputController.text;
+      // Provider.of<Login>(context, listen: false)
+      //     .userData['userIntentionFactorSets']
+      //     .last['userIntentionFactorSetContext'] = currentContext;
+      if (Provider.of<Login>(context, listen: false)
+          .fitContextIntentionFactorSetsName
+          .contains(saveInputController.text)) {
+        saveInputController.text = saveInputController.text +
+            '-' +
+            DateFormat.Hms().format(DateTime.now()) +
+            '-' +
+            DateFormat.Md().format(DateTime.now());
+      }
+      Provider.of<Login>(context, listen: false).selectedIntentionFactorSet[0]
+          ['userIntentionFactorSetName'] = saveInputController.text;
+      Provider.of<Login>(context, listen: false).selectedIntentionFactorSet[0]
+          ['userIntentionFactorSetContext'] = currentContext;
+      // Provider.of<Login>(context, listen: false).selectedIntentionFactorSetName =
+      //     saveInputController.text;
 
-    CollectionReference users = FirebaseFirestore.instance.collection('users');
+      CollectionReference users =
+          FirebaseFirestore.instance.collection('users');
 
-    users.doc(path).update({
-      'userIntentionFactorSets': FieldValue.arrayUnion([
-        // Provider.of<Login>(context, listen: false)
-        //     .userData['userIntentionFactorSets']
-        //     .last
-        Provider.of<Login>(context, listen: false).selectedIntentionFactorSet[0]
-      ])
-    });
+      users.doc(path).update({
+        'userIntentionFactorSets': FieldValue.arrayUnion([
+          // Provider.of<Login>(context, listen: false)
+          //     .userData['userIntentionFactorSets']
+          //     .last
+          Provider.of<Login>(context, listen: false)
+              .selectedIntentionFactorSet[0]
+        ])
+      });
 
-    await Provider.of<Login>(context, listen: false)
-        .resetSelectedIntentionFactorSetName(saveInputController.text);
-    Provider.of<Login>(context, listen: false).save();
-    Navigator.of(context).pop(context);
-    saveInputController.clear();
+      await Provider.of<Login>(context, listen: false)
+          .resetSelectedIntentionFactorSetName(saveInputController.text);
+      Provider.of<Login>(context, listen: false).save();
+      Navigator.of(context).pop(context);
+      saveInputController.clear();
 
-    CollectionReference usersEvent =
-        FirebaseFirestore.instance.collection('usersEvent');
-    usersEvent.doc('6Kme8kTW8NvQwWYw5uVT').update({
-      'usersEventRecord': FieldValue.arrayUnion([
+      CollectionReference usersEvent =
+          FirebaseFirestore.instance.collection('usersEvent');
+      usersEvent.doc('6Kme8kTW8NvQwWYw5uVT').update(
         {
-          'user':
-              Provider.of<Login>(context, listen: false).userData['userEmail'],
-          'eventType': 'confirmSave',
-          'timeStamp': DateFormat.yMd().add_Hms().format(DateTime.now()),
-        }
-      ])
-    });
-    // getContext();
+          'usersEventRecord': FieldValue.arrayUnion(
+            [
+              {
+                'user': Provider.of<Login>(context, listen: false)
+                    .userData['userEmail'],
+                'eventType': 'confirmSave',
+                'timeStamp': DateFormat.yMd().add_Hms().format(DateTime.now()),
+              }
+            ],
+          )
+        },
+      );
+    }
   }
 
   @override

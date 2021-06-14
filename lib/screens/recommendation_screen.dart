@@ -23,9 +23,17 @@ class _RecommendationScreenState extends State<RecommendationScreen> {
   List<Map> candidateListFilterTime;
   List<Map> candidateListFilterDistance;
   List<Map> candidateListFilterRating;
+  List<Map> candidateListFilterService;
+  List<Map> candidateListFilterConsumption;
+
+  List<Map> dataList;
   List<Map> resultList;
+  bool isLoading;
 
   StreamController<double> controller = StreamController<double>();
+
+  CollectionReference restaurants =
+      FirebaseFirestore.instance.collection('restaurants');
 
   @override
   void initState() {
@@ -34,8 +42,35 @@ class _RecommendationScreenState extends State<RecommendationScreen> {
     candidateListFilterTime = [];
     candidateListFilterDistance = [];
     candidateListFilterRating = [];
+    candidateListFilterService = [];
+    candidateListFilterConsumption = [];
+
+    dataList = [];
+
     resultList = [];
+    isLoading = true;
+    // getRecommendation(
+    //     Provider.of<Login>(context, listen: false).selectedIntentionFactorSet[0]
+    //         ['intentionFactors'][0]['intentionFactorSelectedOption'],
+    //     Provider.of<Login>(context, listen: false).selectedIntentionFactorSet[0]
+    //         ['intentionFactors'][1]['intentionFactorSelectedOption']);
     super.initState();
+    getData();
+  }
+
+  Future<DocumentSnapshot<Object>> getData() async {
+    Map<String, dynamic> restaurantData;
+    CollectionReference restaurants =
+        FirebaseFirestore.instance.collection('restaurants');
+    restaurants.get().then((querySnapshot) {
+      querySnapshot.docs.forEach((result) async {
+        restaurantData = Map<String, dynamic>.from(result.data());
+        dataList.add(restaurantData);
+      });
+      setState(() {
+        isLoading = false;
+      });
+    });
   }
 
   Stream<QuerySnapshot> getRecommendation(
@@ -82,6 +117,7 @@ class _RecommendationScreenState extends State<RecommendationScreen> {
     //   print('aaa ${value.docs}');
     //   print('bbb ${value.docs.length}');
     // });
+    isLoading = false;
 
     return restaurants
         .orderBy('rating', descending: true)
@@ -89,17 +125,28 @@ class _RecommendationScreenState extends State<RecommendationScreen> {
         .snapshots();
   }
 
-  List calculatePreference(
-    AsyncSnapshot snapshot,
+  Future calculatePreference(
+    List dataList,
+    String serviceSelectedOption,
+    String consumptionSelectedOption,
     List preferenceList,
     String timeSelectedOption,
     String distanceSelectedOption,
     String ratingSelectedOption,
+    // List<Map> candidateList,
+    // List<Map> candidateListFilterPreference,
+    // List<Map> candidateListFilterTime,
+    // List<Map> candidateListFilterDistance,
+    // List<Map> candidateListFilterRating,
+    // List<Map> candidateListFilterService,
+    // List<Map> candidateListFilterConsumption,
   ) {
     // print(preferenceList);
-    snapshot.data.docs.forEach((element) {
-      candidateList.add(element.data());
-    });
+    // dataList.forEach((element) {
+    //   candidateList.add(element);
+    //   // print('candidateList    $element');
+    // });
+    print('candidateList     $dataList');
     List cuisineTypeList = [
       '台式',
       '中式',
@@ -123,7 +170,7 @@ class _RecommendationScreenState extends State<RecommendationScreen> {
       '咖啡',
       '酒吧/餐酒館'
     ];
-    candidateList.forEach((element) {
+    this.dataList.forEach((element) {
       List cuisineList = [
         0,
         0,
@@ -161,13 +208,15 @@ class _RecommendationScreenState extends State<RecommendationScreen> {
       // print('111  $cuisineList');
       // print(element);
     });
-    candidateList
+    this
+        .dataList
         .sort((a, b) => (b['cosSimilarity']).compareTo(a['cosSimilarity']));
-    candidateListFilterPreference = candidateList
+    this.candidateListFilterPreference = this
+        .dataList
         .where((element) => element['cosSimilarity'] != 0)
         .toList();
 
-    candidateListFilterPreference.forEach((element) {
+    this.candidateListFilterPreference.forEach((element) {
       double distance = calculateDistance(
           element['lat'],
           element['lng'],
@@ -177,81 +226,152 @@ class _RecommendationScreenState extends State<RecommendationScreen> {
     });
 
     if (timeSelectedOption == '不考慮') {
-      candidateListFilterPreference.forEach((element) {
-        candidateListFilterTime.add(element);
+      this.candidateListFilterPreference.forEach((element) {
+        this.candidateListFilterTime.add(element);
       });
     }
     if (timeSelectedOption == '少於30分鐘') {
-      candidateListFilterPreference.forEach((element) {
+      this.candidateListFilterPreference.forEach((element) {
         if (double.parse(element['distance']) < 0.5) {
-          candidateListFilterTime.add(element);
+          this.candidateListFilterTime.add(element);
         }
       });
     }
     if (timeSelectedOption == '30分鐘至2小時') {
-      candidateListFilterPreference.forEach((element) {
+      this.candidateListFilterPreference.forEach((element) {
         if (double.parse(element['distance']) > 0.5 &&
             double.parse(element['distance']) < 2) {
-          candidateListFilterTime.add(element);
+          this.candidateListFilterTime.add(element);
         }
       });
     }
-    if (candidateListFilterTime.length != 0) {
+    if (this.candidateListFilterTime.length != 0) {
       if (distanceSelectedOption == '不考慮') {
-        candidateListFilterTime.forEach((element) {
-          candidateListFilterDistance.add(element);
+        this.candidateListFilterTime.forEach((element) {
+          this.candidateListFilterDistance.add(element);
         });
       }
       if (distanceSelectedOption == '少於500公尺') {
-        candidateListFilterTime.forEach((element) {
+        this.candidateListFilterTime.forEach((element) {
           if (double.parse(element['distance']) < 0.5) {
-            candidateListFilterDistance.add(element);
+            this.candidateListFilterDistance.add(element);
           }
         });
       }
       if (distanceSelectedOption == '500至2000公尺') {
-        candidateListFilterTime.forEach((element) {
+        this.candidateListFilterTime.forEach((element) {
           if (double.parse(element['distance']) > 0.5 &&
               double.parse(element['distance']) < 2) {
-            candidateListFilterDistance.add(element);
+            this.candidateListFilterDistance.add(element);
           }
         });
       }
     }
 
-    if (candidateListFilterDistance.length != 0) {
+    if (this.candidateListFilterDistance.length != 0) {
       if (ratingSelectedOption == '不考慮') {
-        candidateListFilterDistance.forEach((element) {
-          candidateListFilterRating.add(element);
+        this.candidateListFilterDistance.forEach((element) {
+          this.candidateListFilterRating.add(element);
         });
       }
       if (ratingSelectedOption == '四顆星以上') {
-        candidateListFilterDistance
+        this
+            .candidateListFilterDistance
             .sort((a, b) => (b['rating']).compareTo(a['rating']));
-        candidateListFilterDistance.forEach((element) {
-          candidateListFilterRating.add(element);
+        this.candidateListFilterDistance.forEach((element) {
+          this.candidateListFilterRating.add(element);
         });
       }
     }
 
-    if (candidateListFilterRating.length != 0) {
-      if (candidateListFilterRating.length < 10) {
-        for (int i = 0; i < candidateListFilterRating.length - 1; i++) {
-          resultList.add(candidateListFilterRating[i]);
+    if (this.candidateListFilterRating.length != 0) {
+      if (serviceSelectedOption == '不考慮') {
+        this.candidateListFilterRating.forEach((element) {
+          this.candidateListFilterService.add(element);
+        });
+      }
+      if (serviceSelectedOption == '內用') {
+        this.candidateListFilterRating.forEach((element) {
+          element['inout'].forEach((element) {
+            if (element == '內用') {
+              this.candidateListFilterService.add(element);
+            }
+          });
+        });
+      }
+      if (serviceSelectedOption == '外帶') {
+        this.candidateListFilterRating.forEach((element) {
+          element['inout'].forEach((element) {
+            if (element == '外帶') {
+              this.candidateListFilterService.add(element);
+            }
+          });
+        });
+      }
+    }
+
+    if (this.candidateListFilterService.length != 0) {
+      if (consumptionSelectedOption == '不考慮') {
+        this.candidateListFilterService.forEach((element) {
+          this.candidateListFilterConsumption.add(element);
+        });
+      }
+      if (consumptionSelectedOption == '\$') {
+        this.candidateListFilterService.forEach((element) {
+          if (element['consumption'] == 'p') {
+            this.candidateListFilterConsumption.add(element);
+          }
+        });
+      }
+      if (consumptionSelectedOption == '\$\$') {
+        this.candidateListFilterService.forEach((element) {
+          if (element['consumption'] == 'pp') {
+            this.candidateListFilterConsumption.add(element);
+          }
+        });
+      }
+      if (consumptionSelectedOption == '\$\$\$') {
+        this.candidateListFilterService.forEach((element) {
+          if (element['consumption'] == 'ppp') {
+            this.candidateListFilterConsumption.add(element);
+          }
+        });
+      }
+      if (consumptionSelectedOption == '\$\$\$\$') {
+        this.candidateListFilterService.forEach((element) {
+          if (element['consumption'] == 'pppp') {
+            this.candidateListFilterConsumption.add(element);
+          }
+        });
+      }
+    }
+
+    if (this.candidateListFilterConsumption.length != 0) {
+      if (this.candidateListFilterConsumption.length < 10) {
+        for (int i = 0;
+            i < this.candidateListFilterConsumption.length - 1;
+            i++) {
+          this.resultList.add(this.candidateListFilterConsumption[i]);
         }
       } else {
         for (int i = 0; i < 10; i++) {
-          resultList.add(candidateListFilterRating[i]);
+          this.resultList.add(this.candidateListFilterConsumption[i]);
         }
       }
     }
 
     // print(candidateList.length);
-    // print(candidateListFilterPreference.length);
-    // print(candidateListFilterTime.length);
+    print(this.dataList.length);
+    print(this.candidateListFilterPreference.length);
+    print(this.candidateListFilterTime.length);
 
-    // print(candidateListFilterDistance.length);
-    // print(candidateListFilterRating.length);
+    print(this.candidateListFilterDistance.length);
+    print(this.candidateListFilterRating.length);
+    print(this.candidateListFilterService.length);
+
+    print(this.candidateListFilterConsumption.length);
+    print(this.resultList);
+    print(this.resultList.length);
 
     // print(resultList.length);
   }
@@ -453,7 +573,7 @@ class _RecommendationScreenState extends State<RecommendationScreen> {
             Divider(),
             ListTile(
               title: Text('服務'),
-              trailing: Text(service.join()),
+              trailing: Text('${service.join('/')}'),
             ),
             ListTile(
               title: Text('均消'),
@@ -531,76 +651,181 @@ class _RecommendationScreenState extends State<RecommendationScreen> {
       ),
       body: Consumer<Login>(
         builder: (context, login, child) {
-          return StreamBuilder(
-            stream: getRecommendation(
+          if (isLoading == false) {
+            calculatePreference(
+              dataList,
               login.selectedIntentionFactorSet[0]['intentionFactors'][0]
                   ['intentionFactorSelectedOption'],
               login.selectedIntentionFactorSet[0]['intentionFactors'][1]
                   ['intentionFactorSelectedOption'],
-              // time,
-              // login.selectedIntentionFactorSet[0]['intentionFactors'][3]
-              //     ['intentionFactorSelectedOption'],
-            ),
-            builder: (BuildContext context, AsyncSnapshot snapshot) {
-              if (snapshot.hasData) {
-                calculatePreference(
-                  snapshot,
-                  login.userData['userPreference'],
-                  login.selectedIntentionFactorSet[0]['intentionFactors'][2]
-                      ['intentionFactorSelectedOption'],
-                  login.selectedIntentionFactorSet[0]['intentionFactors'][3]
-                      ['intentionFactorSelectedOption'],
-                  login.selectedIntentionFactorSet[0]['intentionFactors'][4]
-                      ['intentionFactorSelectedOption'],
-                );
-                return (resultList.length == 0)
-                    ? Center(
-                        child: Text('get 0 result'),
-                      )
-                    : Scrollbar(
-                        child: ListView.builder(
-                          itemBuilder: (ctx, index) {
-                            return resultItem(
-                                ctx,
-                                resultList[index]['name'],
-                                resultList[index]['address'],
-                                resultList[index]['cuisine_type'],
-                                resultList[index]['inout'],
-                                resultList[index]['price_segment'],
-                                login.selectedIntentionFactorSet[0]
-                                        ['intentionFactors'][2]
-                                    ['intentionFactorSelectedOption'],
-                                resultList[index]['distance'],
-                                resultList[index]['rating'],
-                                login.userData['userEmail'],
-                                login.selectedIntentionFactorSet[0]
-                                        ['intentionFactors'][0]
-                                    ['intentionFactorSelectedOption'],
-                                login.selectedIntentionFactorSet[0]
-                                        ['intentionFactors'][1]
-                                    ['intentionFactorSelectedOption'],
-                                login.selectedIntentionFactorSet[0]
-                                        ['intentionFactors'][2]
-                                    ['intentionFactorSelectedOption'],
-                                login.selectedIntentionFactorSet[0]
-                                        ['intentionFactors'][3]
-                                    ['intentionFactorSelectedOption'],
-                                login.selectedIntentionFactorSet[0]
-                                        ['intentionFactors'][4]
-                                    ['intentionFactorSelectedOption'],
-                                resultList[index]['cuisineList']);
-                          },
-                          // itemCount: snapshot.data.docs.length,/
-                          itemCount: resultList.length,
-                        ),
-                      );
-              } else {
-                return Center(
-                  child: Text('waiting'),
-                );
-              }
-            },
-          );
+              login.userData['userPreference'],
+              login.selectedIntentionFactorSet[0]['intentionFactors'][2]
+                  ['intentionFactorSelectedOption'],
+              login.selectedIntentionFactorSet[0]['intentionFactors'][3]
+                  ['intentionFactorSelectedOption'],
+              login.selectedIntentionFactorSet[0]['intentionFactors'][4]
+                  ['intentionFactorSelectedOption'],
+              // candidateList,
+              // candidateListFilterPreference,
+              // candidateListFilterTime,
+              // candidateListFilterDistance,
+              // candidateListFilterRating,
+              // candidateListFilterService,
+              // candidateListFilterConsumption,
+            );
+          }
+          return isLoading
+              ? Center(
+                  child: CircularProgressIndicator(),
+                )
+              : (this.resultList.length == 0)
+                  ? Center(
+                      child: Text('get 0 result'),
+                    )
+                  : Scrollbar(
+                      child: ListView.builder(
+                        itemBuilder: (ctx, index) {
+                          return resultItem(
+                              ctx,
+                              resultList[index]['name'],
+                              resultList[index]['address'],
+                              resultList[index]['cuisine_type'],
+                              resultList[index]['inout'],
+                              resultList[index]['price_segment'],
+                              login.selectedIntentionFactorSet[0]
+                                      ['intentionFactors'][2]
+                                  ['intentionFactorSelectedOption'],
+                              resultList[index]['distance'],
+                              resultList[index]['rating'],
+                              login.userData['userEmail'],
+                              login.selectedIntentionFactorSet[0]
+                                      ['intentionFactors'][0]
+                                  ['intentionFactorSelectedOption'],
+                              login.selectedIntentionFactorSet[0]
+                                      ['intentionFactors'][1]
+                                  ['intentionFactorSelectedOption'],
+                              login.selectedIntentionFactorSet[0]
+                                      ['intentionFactors'][2]
+                                  ['intentionFactorSelectedOption'],
+                              login.selectedIntentionFactorSet[0]
+                                      ['intentionFactors'][3]
+                                  ['intentionFactorSelectedOption'],
+                              login.selectedIntentionFactorSet[0]
+                                      ['intentionFactors'][4]
+                                  ['intentionFactorSelectedOption'],
+                              resultList[index]['cuisineList']);
+                        },
+                        // itemCount: snapshot.data.docs.length,/
+                        itemCount: resultList.length,
+                      ),
+                    );
+
+          // StreamBuilder(
+          //   stream: FirebaseFirestore.instance
+          //       .collection('restaurants')
+          //       .snapshots(),
+          //   builder: (BuildContext context, AsyncSnapshot snapshot) {
+          // if (snapshot.connectionState == ConnectionState.done) {
+          //   return Center(
+          //     child: Text('done'),
+          //   );
+          // }
+          // if (snapshot.connectionState == ConnectionState.waiting) {
+          //   return Center(
+          //     child: Text('waiting'),
+          //   );
+          // }
+          // if (snapshot.connectionState == ConnectionState.none) {
+          //   return Center(
+          //     child: Text('none'),
+          //   );
+          // }
+          // if (snapshot.connectionState == ConnectionState.active) {
+          //   return Center(
+          //     child: Text('active'),
+          //   );
+          // }
+          // if (!snapshot.hasData) {
+          //   return Center(
+          //     child: CircularProgressIndicator(),
+          //   );
+          // }
+          // if (snapshot.hasData) {
+          //   calculatePreference(
+          //     snapshot,
+          //     login.selectedIntentionFactorSet[0]['intentionFactors'][0]
+          //         ['intentionFactorSelectedOption'],
+          //     login.selectedIntentionFactorSet[0]['intentionFactors'][1]
+          //         ['intentionFactorSelectedOption'],
+          //     login.userData['userPreference'],
+          //     login.selectedIntentionFactorSet[0]['intentionFactors'][2]
+          //         ['intentionFactorSelectedOption'],
+          //     login.selectedIntentionFactorSet[0]['intentionFactors'][3]
+          //         ['intentionFactorSelectedOption'],
+          //     login.selectedIntentionFactorSet[0]['intentionFactors'][4]
+          //         ['intentionFactorSelectedOption'],
+          //   );
+          //   return (resultList.length == 0)
+          //       ? Center(
+          //           child: Text('get 0 result'),
+          //         )
+          //       : Scrollbar(
+          //           child: ListView.builder(
+          //             itemBuilder: (ctx, index) {
+          //               return resultItem(
+          //                   ctx,
+          //                   resultList[index]['name'],
+          //                   resultList[index]['address'],
+          //                   resultList[index]['cuisine_type'],
+          //                   resultList[index]['inout'],
+          //                   resultList[index]['price_segment'],
+          //                   login.selectedIntentionFactorSet[0]
+          //                           ['intentionFactors'][2]
+          //                       ['intentionFactorSelectedOption'],
+          //                   resultList[index]['distance'],
+          //                   resultList[index]['rating'],
+          //                   login.userData['userEmail'],
+          //                   login.selectedIntentionFactorSet[0]
+          //                           ['intentionFactors'][0]
+          //                       ['intentionFactorSelectedOption'],
+          //                   login.selectedIntentionFactorSet[0]
+          //                           ['intentionFactors'][1]
+          //                       ['intentionFactorSelectedOption'],
+          //                   login.selectedIntentionFactorSet[0]
+          //                           ['intentionFactors'][2]
+          //                       ['intentionFactorSelectedOption'],
+          //                   login.selectedIntentionFactorSet[0]
+          //                           ['intentionFactors'][3]
+          //                       ['intentionFactorSelectedOption'],
+          //                   login.selectedIntentionFactorSet[0]
+          //                           ['intentionFactors'][4]
+          //                       ['intentionFactorSelectedOption'],
+          //                   resultList[index]['cuisineList']);
+          //             },
+          //             // itemCount: snapshot.data.docs.length,/
+          //             itemCount: resultList.length,
+          //           ),
+          //         );
+          // }
+
+          // if (snapshot.connectionState == ConnectionState.active) {
+          //   return Center(
+          //     child: Text('active'),
+          //   );
+          // }
+
+          // calculatePreference(
+          //   snapshot,
+          //   login.userData['userPreference'],
+          //   login.selectedIntentionFactorSet[0]['intentionFactors'][2]
+          //       ['intentionFactorSelectedOption'],
+          //   login.selectedIntentionFactorSet[0]['intentionFactors'][3]
+          //       ['intentionFactorSelectedOption'],
+          //   login.selectedIntentionFactorSet[0]['intentionFactors'][4]
+          //       ['intentionFactorSelectedOption'],
+          // );
+          //   },
+          // );
         },
       ),
     );

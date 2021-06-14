@@ -37,12 +37,12 @@ class _IntentionFactorSetState extends State<IntentionFactorSet> {
   ];
   @override
   void initState() {
-    if (Provider.of<Login>(context, listen: false).userData['userGroup'] ==
-        'system-initiated') {
-      Provider.of<Login>(context, listen: false)
-          .getSelectedIntenitonFactorsetForSystemInitiated(
-              Provider.of<Login>(context, listen: false).get_context());
-    }
+    // if (Provider.of<Login>(context, listen: false).userData['userGroup'] ==
+    //     'system-initiated') {
+    Provider.of<Login>(context, listen: false)
+        .getSelectedIntenitonFactorsetForSystemInitiated(
+            Provider.of<Login>(context, listen: false).get_context());
+    // }
     // get_context();
     //
     print('hi');
@@ -198,104 +198,112 @@ class _IntentionFactorSetState extends State<IntentionFactorSet> {
             : Expanded(
                 child: Container(
                   width: double.infinity,
-                  child: Column(
-                    children: <Widget>[
-                      buildIntentionFactorDropdownButton(
-                        context,
-                        login.selectedIntentionFactorSet[0]['intentionFactors']
-                            [0]['intentionFactorName'],
-                        login.selectedIntentionFactorSet[0]['intentionFactors']
-                            [0]['intentionFactorSelectedOption'],
-                        login.selectedIntentionFactorSet[0]['intentionFactors']
-                            [0]['intentionFactorStatus'],
-                        login.intentionFactor['intentionFactor'][0]
-                                ['intentionFactorOption']
-                            .cast<String>(),
-                        (value) {
-                          setState(() {
-                            login.selectedIntentionFactorSet[0]
-                                    ['intentionFactors'][0]
-                                ['intentionFactorSelectedOption'] = value;
-                          });
-                        },
-                      ),
-                      buildIntentionFactorDropdownButton(
-                        context,
-                        login.selectedIntentionFactorSet[0]['intentionFactors']
-                            [1]['intentionFactorName'],
-                        login.selectedIntentionFactorSet[0]['intentionFactors']
-                            [1]['intentionFactorSelectedOption'],
-                        login.selectedIntentionFactorSet[0]['intentionFactors']
-                            [1]['intentionFactorStatus'],
-                        login.intentionFactor['intentionFactor'][1]
-                                ['intentionFactorOption']
-                            .cast<String>(),
-                        (value) {
-                          setState(() {
-                            login.selectedIntentionFactorSet[0]
-                                    ['intentionFactors'][1]
-                                ['intentionFactorSelectedOption'] = value;
-                          });
-                        },
-                      ),
-                      buildIntentionFactorDropdownButton(
-                        context,
-                        login.selectedIntentionFactorSet[0]['intentionFactors']
-                            [2]['intentionFactorName'],
-                        login.selectedIntentionFactorSet[0]['intentionFactors']
-                            [2]['intentionFactorSelectedOption'],
-                        login.selectedIntentionFactorSet[0]['intentionFactors']
-                            [2]['intentionFactorStatus'],
-                        login.intentionFactor['intentionFactor'][2]
-                                ['intentionFactorOption']
-                            .cast<String>(),
-                        (value) {
-                          setState(() {
-                            login.selectedIntentionFactorSet[0]
-                                    ['intentionFactors'][2]
-                                ['intentionFactorSelectedOption'] = value;
-                          });
-                        },
-                      ),
-                      buildIntentionFactorDropdownButton(
-                        context,
-                        login.selectedIntentionFactorSet[0]['intentionFactors']
-                            [3]['intentionFactorName'],
-                        login.selectedIntentionFactorSet[0]['intentionFactors']
-                            [3]['intentionFactorSelectedOption'],
-                        login.selectedIntentionFactorSet[0]['intentionFactors']
-                            [3]['intentionFactorStatus'],
-                        login.intentionFactor['intentionFactor'][3]
-                                ['intentionFactorOption']
-                            .cast<String>(),
-                        (value) {
-                          setState(() {
-                            login.selectedIntentionFactorSet[0]
-                                    ['intentionFactors'][3]
-                                ['intentionFactorSelectedOption'] = value;
-                          });
-                        },
-                      ),
-                      buildIntentionFactorDropdownButton(
-                        context,
-                        login.selectedIntentionFactorSet[0]['intentionFactors']
-                            [4]['intentionFactorName'],
-                        login.selectedIntentionFactorSet[0]['intentionFactors']
-                            [4]['intentionFactorSelectedOption'],
-                        login.selectedIntentionFactorSet[0]['intentionFactors']
-                            [4]['intentionFactorStatus'],
-                        login.intentionFactor['intentionFactor'][4]
-                                ['intentionFactorOption']
-                            .cast<String>(),
-                        (value) {
-                          setState(() {
-                            login.selectedIntentionFactorSet[0]
-                                    ['intentionFactors'][4]
-                                ['intentionFactorSelectedOption'] = value;
-                          });
-                        },
-                      ),
-                    ],
+                  height: MediaQuery.of(context).size.height * 0.4,
+                  child: SingleChildScrollView(
+                    child: Column(
+                      children: <Widget>[
+                        buildIntentionFactorDropdownButton(
+                          context,
+                          login.selectedIntentionFactorSet[0]
+                              ['intentionFactors'][0]['intentionFactorName'],
+                          login.selectedIntentionFactorSet[0]
+                                  ['intentionFactors'][0]
+                              ['intentionFactorSelectedOption'],
+                          login.selectedIntentionFactorSet[0]
+                              ['intentionFactors'][0]['intentionFactorStatus'],
+                          login.intentionFactor['intentionFactor'][0]
+                                  ['intentionFactorOption']
+                              .cast<String>(),
+                          (value) {
+                            setState(() {
+                              login.selectedIntentionFactorSet[0]
+                                      ['intentionFactors'][0]
+                                  ['intentionFactorSelectedOption'] = value;
+                            });
+                          },
+                        ),
+                        buildIntentionFactorDropdownButton(
+                          context,
+                          login.selectedIntentionFactorSet[0]
+                              ['intentionFactors'][1]['intentionFactorName'],
+                          login.selectedIntentionFactorSet[0]
+                                  ['intentionFactors'][1]
+                              ['intentionFactorSelectedOption'],
+                          login.selectedIntentionFactorSet[0]
+                              ['intentionFactors'][1]['intentionFactorStatus'],
+                          login.intentionFactor['intentionFactor'][1]
+                                  ['intentionFactorOption']
+                              .cast<String>(),
+                          (value) {
+                            setState(() {
+                              login.selectedIntentionFactorSet[0]
+                                      ['intentionFactors'][1]
+                                  ['intentionFactorSelectedOption'] = value;
+                            });
+                          },
+                        ),
+                        buildIntentionFactorDropdownButton(
+                          context,
+                          login.selectedIntentionFactorSet[0]
+                              ['intentionFactors'][2]['intentionFactorName'],
+                          login.selectedIntentionFactorSet[0]
+                                  ['intentionFactors'][2]
+                              ['intentionFactorSelectedOption'],
+                          login.selectedIntentionFactorSet[0]
+                              ['intentionFactors'][2]['intentionFactorStatus'],
+                          login.intentionFactor['intentionFactor'][2]
+                                  ['intentionFactorOption']
+                              .cast<String>(),
+                          (value) {
+                            setState(() {
+                              login.selectedIntentionFactorSet[0]
+                                      ['intentionFactors'][2]
+                                  ['intentionFactorSelectedOption'] = value;
+                            });
+                          },
+                        ),
+                        buildIntentionFactorDropdownButton(
+                          context,
+                          login.selectedIntentionFactorSet[0]
+                              ['intentionFactors'][3]['intentionFactorName'],
+                          login.selectedIntentionFactorSet[0]
+                                  ['intentionFactors'][3]
+                              ['intentionFactorSelectedOption'],
+                          login.selectedIntentionFactorSet[0]
+                              ['intentionFactors'][3]['intentionFactorStatus'],
+                          login.intentionFactor['intentionFactor'][3]
+                                  ['intentionFactorOption']
+                              .cast<String>(),
+                          (value) {
+                            setState(() {
+                              login.selectedIntentionFactorSet[0]
+                                      ['intentionFactors'][3]
+                                  ['intentionFactorSelectedOption'] = value;
+                            });
+                          },
+                        ),
+                        buildIntentionFactorDropdownButton(
+                          context,
+                          login.selectedIntentionFactorSet[0]
+                              ['intentionFactors'][4]['intentionFactorName'],
+                          login.selectedIntentionFactorSet[0]
+                                  ['intentionFactors'][4]
+                              ['intentionFactorSelectedOption'],
+                          login.selectedIntentionFactorSet[0]
+                              ['intentionFactors'][4]['intentionFactorStatus'],
+                          login.intentionFactor['intentionFactor'][4]
+                                  ['intentionFactorOption']
+                              .cast<String>(),
+                          (value) {
+                            setState(() {
+                              login.selectedIntentionFactorSet[0]
+                                      ['intentionFactors'][4]
+                                  ['intentionFactorSelectedOption'] = value;
+                            });
+                          },
+                        ),
+                      ],
+                    ),
                   ),
                 ),
               );
@@ -443,114 +451,122 @@ class _IntentionFactorSetState extends State<IntentionFactorSet> {
                 : Expanded(
                     child: Container(
                       width: double.infinity,
-                      child: Column(
-                        children: <Widget>[
-                          buildIntentionFactorDropdownButton(
-                            context,
-                            login.selectedIntentionFactorSet[0]
-                                ['intentionFactors'][0]['intentionFactorName'],
-                            login.selectedIntentionFactorSet[0]
-                                    ['intentionFactors'][0]
-                                ['intentionFactorSelectedOption'],
-                            login.selectedIntentionFactorSet[0]
-                                    ['intentionFactors'][0]
-                                ['intentionFactorStatus'],
-                            login.intentionFactor['intentionFactor'][0]
-                                    ['intentionFactorOption']
-                                .cast<String>(),
-                            (value) {
-                              setState(() {
-                                login.selectedIntentionFactorSet[0]
-                                        ['intentionFactors'][0]
-                                    ['intentionFactorSelectedOption'] = value;
-                              });
-                            },
-                          ),
-                          buildIntentionFactorDropdownButton(
-                            context,
-                            login.selectedIntentionFactorSet[0]
-                                ['intentionFactors'][1]['intentionFactorName'],
-                            login.selectedIntentionFactorSet[0]
-                                    ['intentionFactors'][1]
-                                ['intentionFactorSelectedOption'],
-                            login.selectedIntentionFactorSet[0]
-                                    ['intentionFactors'][1]
-                                ['intentionFactorStatus'],
-                            login.intentionFactor['intentionFactor'][1]
-                                    ['intentionFactorOption']
-                                .cast<String>(),
-                            (value) {
-                              setState(() {
-                                login.selectedIntentionFactorSet[0]
-                                        ['intentionFactors'][1]
-                                    ['intentionFactorSelectedOption'] = value;
-                              });
-                            },
-                          ),
-                          buildIntentionFactorDropdownButton(
-                            context,
-                            login.selectedIntentionFactorSet[0]
-                                ['intentionFactors'][2]['intentionFactorName'],
-                            login.selectedIntentionFactorSet[0]
-                                    ['intentionFactors'][2]
-                                ['intentionFactorSelectedOption'],
-                            login.selectedIntentionFactorSet[0]
-                                    ['intentionFactors'][2]
-                                ['intentionFactorStatus'],
-                            login.intentionFactor['intentionFactor'][2]
-                                    ['intentionFactorOption']
-                                .cast<String>(),
-                            (value) {
-                              setState(() {
-                                login.selectedIntentionFactorSet[0]
-                                        ['intentionFactors'][2]
-                                    ['intentionFactorSelectedOption'] = value;
-                              });
-                            },
-                          ),
-                          buildIntentionFactorDropdownButton(
-                            context,
-                            login.selectedIntentionFactorSet[0]
-                                ['intentionFactors'][3]['intentionFactorName'],
-                            login.selectedIntentionFactorSet[0]
-                                    ['intentionFactors'][3]
-                                ['intentionFactorSelectedOption'],
-                            login.selectedIntentionFactorSet[0]
-                                    ['intentionFactors'][3]
-                                ['intentionFactorStatus'],
-                            login.intentionFactor['intentionFactor'][3]
-                                    ['intentionFactorOption']
-                                .cast<String>(),
-                            (value) {
-                              setState(() {
-                                login.selectedIntentionFactorSet[0]
-                                        ['intentionFactors'][3]
-                                    ['intentionFactorSelectedOption'] = value;
-                              });
-                            },
-                          ),
-                          buildIntentionFactorDropdownButton(
-                            context,
-                            login.selectedIntentionFactorSet[0]
-                                ['intentionFactors'][4]['intentionFactorName'],
-                            login.selectedIntentionFactorSet[0]
-                                    ['intentionFactors'][4]
-                                ['intentionFactorSelectedOption'],
-                            login.selectedIntentionFactorSet[0]
-                                    ['intentionFactors'][4]
-                                ['intentionFactorStatus'],
-                            login.intentionFactor['intentionFactor'][4]
-                                    ['intentionFactorOption']
-                                .cast<String>(),
-                            (value) {
-                              setState(() {
-                                login.selectedIntentionFactorSet[0]
-                                        ['intentionFactors'][4]
-                                    ['intentionFactorSelectedOption'] = value;
-                              });
-                            },
-                          ),
-                        ],
+                      height: MediaQuery.of(context).size.height * 0.4,
+                      child: SingleChildScrollView(
+                        child: Column(
+                          children: <Widget>[
+                            buildIntentionFactorDropdownButton(
+                              context,
+                              login.selectedIntentionFactorSet[0]
+                                      ['intentionFactors'][0]
+                                  ['intentionFactorName'],
+                              login.selectedIntentionFactorSet[0]
+                                      ['intentionFactors'][0]
+                                  ['intentionFactorSelectedOption'],
+                              login.selectedIntentionFactorSet[0]
+                                      ['intentionFactors'][0]
+                                  ['intentionFactorStatus'],
+                              login.intentionFactor['intentionFactor'][0]
+                                      ['intentionFactorOption']
+                                  .cast<String>(),
+                              (value) {
+                                setState(() {
+                                  login.selectedIntentionFactorSet[0]
+                                          ['intentionFactors'][0]
+                                      ['intentionFactorSelectedOption'] = value;
+                                });
+                              },
+                            ),
+                            buildIntentionFactorDropdownButton(
+                              context,
+                              login.selectedIntentionFactorSet[0]
+                                      ['intentionFactors'][1]
+                                  ['intentionFactorName'],
+                              login.selectedIntentionFactorSet[0]
+                                      ['intentionFactors'][1]
+                                  ['intentionFactorSelectedOption'],
+                              login.selectedIntentionFactorSet[0]
+                                      ['intentionFactors'][1]
+                                  ['intentionFactorStatus'],
+                              login.intentionFactor['intentionFactor'][1]
+                                      ['intentionFactorOption']
+                                  .cast<String>(),
+                              (value) {
+                                setState(() {
+                                  login.selectedIntentionFactorSet[0]
+                                          ['intentionFactors'][1]
+                                      ['intentionFactorSelectedOption'] = value;
+                                });
+                              },
+                            ),
+                            buildIntentionFactorDropdownButton(
+                              context,
+                              login.selectedIntentionFactorSet[0]
+                                      ['intentionFactors'][2]
+                                  ['intentionFactorName'],
+                              login.selectedIntentionFactorSet[0]
+                                      ['intentionFactors'][2]
+                                  ['intentionFactorSelectedOption'],
+                              login.selectedIntentionFactorSet[0]
+                                      ['intentionFactors'][2]
+                                  ['intentionFactorStatus'],
+                              login.intentionFactor['intentionFactor'][2]
+                                      ['intentionFactorOption']
+                                  .cast<String>(),
+                              (value) {
+                                setState(() {
+                                  login.selectedIntentionFactorSet[0]
+                                          ['intentionFactors'][2]
+                                      ['intentionFactorSelectedOption'] = value;
+                                });
+                              },
+                            ),
+                            buildIntentionFactorDropdownButton(
+                              context,
+                              login.selectedIntentionFactorSet[0]
+                                      ['intentionFactors'][3]
+                                  ['intentionFactorName'],
+                              login.selectedIntentionFactorSet[0]
+                                      ['intentionFactors'][3]
+                                  ['intentionFactorSelectedOption'],
+                              login.selectedIntentionFactorSet[0]
+                                      ['intentionFactors'][3]
+                                  ['intentionFactorStatus'],
+                              login.intentionFactor['intentionFactor'][3]
+                                      ['intentionFactorOption']
+                                  .cast<String>(),
+                              (value) {
+                                setState(() {
+                                  login.selectedIntentionFactorSet[0]
+                                          ['intentionFactors'][3]
+                                      ['intentionFactorSelectedOption'] = value;
+                                });
+                              },
+                            ),
+                            buildIntentionFactorDropdownButton(
+                              context,
+                              login.selectedIntentionFactorSet[0]
+                                      ['intentionFactors'][4]
+                                  ['intentionFactorName'],
+                              login.selectedIntentionFactorSet[0]
+                                      ['intentionFactors'][4]
+                                  ['intentionFactorSelectedOption'],
+                              login.selectedIntentionFactorSet[0]
+                                      ['intentionFactors'][4]
+                                  ['intentionFactorStatus'],
+                              login.intentionFactor['intentionFactor'][4]
+                                      ['intentionFactorOption']
+                                  .cast<String>(),
+                              (value) {
+                                setState(() {
+                                  login.selectedIntentionFactorSet[0]
+                                          ['intentionFactors'][4]
+                                      ['intentionFactorSelectedOption'] = value;
+                                });
+                              },
+                            ),
+                          ],
+                        ),
                       ),
                     ),
                   );

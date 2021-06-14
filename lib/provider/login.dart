@@ -207,21 +207,68 @@ class Login with ChangeNotifier {
   void getSelectedIntenitonFactorsetForSystemInitiated(
       Future getContext) async {
     await getContext;
-    this._selectedIntentionFactorSet = [];
 
-    for (int i = 0; i < 8; i++) {
-      if (this._userData['userIntentionFactorSets'][i]
-              ['userIntentionFactorSetContext'] ==
-          this._currentContext) {
-        this
-            ._selectedIntentionFactorSet
-            .add(this._userData['userIntentionFactorSets'][i]);
-        notifyListeners();
+    if (this._userData['userGroup'] == 'system-initiated') {
+      this._selectedIntentionFactorSet = [];
+
+      for (int i = 0; i < 8; i++) {
+        if (this._userData['userIntentionFactorSets'][i]
+                ['userIntentionFactorSetContext'] ==
+            this._currentContext) {
+          this
+              ._selectedIntentionFactorSet
+              .add(this._userData['userIntentionFactorSets'][i]);
+          print('a  $i');
+          notifyListeners();
+        }
+        print(i);
       }
-      print(i);
     }
+    // if (this._userData['userGroup'] == 'user-initiated') {
+    //   this.resetFitContextSets();
+    //   for (var i = 0;
+    //       i < this._userData['userIntentionFactorSets'].length;
+    //       i++) {
+    //     this.getFitIntentionFactorSets(
+    //         this._userData['userIntentionFactorSets'][i]);
+
+    //     this.getFitIntentionFactorSetsName(
+    //         this._userData['userIntentionFactorSets'][i]
+    //             ['userIntentionFactorSetName']);
+    //   }
+    // }
+    if (this._userData['userGroup'] == 'mix-initiated') {
+      // this._selectedIntentionFactorSet = [];
+
+      this.resetFitContextSets();
+      for (var i = 0;
+          i < this._userData['userIntentionFactorSets'].length;
+          i++) {
+        if (this._userData['userIntentionFactorSets'][i]
+                ['userIntentionFactorSetContext'] ==
+            this._currentContext) {
+          this.getFitIntentionFactorSets(
+              this._userData['userIntentionFactorSets'][i]);
+
+          this.getFitIntentionFactorSetsName(
+              this._userData['userIntentionFactorSets'][i]
+                  ['userIntentionFactorSetName']);
+          notifyListeners();
+        }
+      }
+    }
+    // if (this._userData['userGroup'] == 'no-personalization') {
+    //   this.resetFitContextSets();
+    //   this.getFitIntentionFactorSets(
+    //       this._userData['userIntentionFactorSets'][0]);
+    // }
+
     // this._selectedIntentionFactorSet = this._fitContextIntentionFactorSets;
+    print(this._currentContext);
     print(this._selectedIntentionFactorSet);
+    print(this._fitContextIntentionFactorSets);
+    print(this._fitContextIntentionFactorSetsName);
+
     print('system-initiated');
 
     // if (this._userData['userGroup'] == 'no-personalization') {

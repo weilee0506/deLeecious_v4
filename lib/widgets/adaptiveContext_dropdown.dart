@@ -43,14 +43,14 @@ class _AdaptiveContextDropdownState extends State<AdaptiveContextDropdown> {
     // fitContextIntentionFactorSets = [];
     // fitContextIntentionFactorSetsName = [];
     // get_context();
-    if (Provider.of<Login>(context, listen: false).userData['userGroup'] ==
-            'user-initiated' ||
-        Provider.of<Login>(context, listen: false).userData['userGroup'] ==
-            'mix-initiated' ||
-        Provider.of<Login>(context, listen: false).userData['userGroup'] ==
-            'no-personalization') {
-      get_context();
-    }
+    // if (Provider.of<Login>(context, listen: false).userData['userGroup'] ==
+    //         'user-initiated' ||
+    //     Provider.of<Login>(context, listen: false).userData['userGroup'] ==
+    //         'mix-initiated' ||
+    //     Provider.of<Login>(context, listen: false).userData['userGroup'] ==
+    //         'no-personalization') {
+    //   get_context();
+    // }
     super.initState();
   }
 
@@ -125,11 +125,13 @@ class _AdaptiveContextDropdownState extends State<AdaptiveContextDropdown> {
               desiredAccuracy: LocationAccuracy.best,
               forceAndroidLocationManager: true)
           .then((Position position) {
-        setState(() {
-          _currentLocation = position;
-          Provider.of<Login>(context, listen: false)
-              .getCurrentLocation(_currentLocation);
-        });
+        if (mounted) {
+          setState(() {
+            _currentLocation = position;
+            Provider.of<Login>(context, listen: false)
+                .getCurrentLocation(_currentLocation);
+          });
+        }
       }).catchError((e) {
         print(e);
       });
@@ -159,11 +161,13 @@ class _AdaptiveContextDropdownState extends State<AdaptiveContextDropdown> {
               desiredAccuracy: LocationAccuracy.best,
               forceAndroidLocationManager: true)
           .then((Position position) {
-        setState(() {
-          _currentLocation = position;
-          Provider.of<Login>(context, listen: false)
-              .getCurrentLocation(_currentLocation);
-        });
+        if (mounted) {
+          setState(() {
+            _currentLocation = position;
+            Provider.of<Login>(context, listen: false)
+                .getCurrentLocation(_currentLocation);
+          });
+        }
       }).catchError((e) {
         print(e);
       });
@@ -182,11 +186,13 @@ class _AdaptiveContextDropdownState extends State<AdaptiveContextDropdown> {
               desiredAccuracy: LocationAccuracy.best,
               forceAndroidLocationManager: true)
           .then((Position position) {
-        setState(() {
-          _currentLocation = position;
-          Provider.of<Login>(context, listen: false)
-              .getCurrentLocation(_currentLocation);
-        });
+        if (mounted) {
+          setState(() {
+            _currentLocation = position;
+            Provider.of<Login>(context, listen: false)
+                .getCurrentLocation(_currentLocation);
+          });
+        }
       }).catchError((e) {
         print(e);
       });
@@ -281,39 +287,41 @@ class _AdaptiveContextDropdownState extends State<AdaptiveContextDropdown> {
       //     Provider.of<Login>(context, listen: false)
       //         .userData['userIntentionFactorSets'][0]);
 
-      for (var i = 0;
-          i <
-              Provider.of<Login>(context, listen: false)
-                  .userData['userIntentionFactorSets']
-                  .length;
-          i++) {
-        if (Provider.of<Login>(context, listen: false)
-                    .userData['userIntentionFactorSets'][i]
-                ['userIntentionFactorSetContext'] ==
-            Provider.of<Login>(context, listen: false).currentContext) {
-          Provider.of<Login>(context, listen: false).getFitIntentionFactorSets(
-              Provider.of<Login>(context, listen: false)
-                  .userData['userIntentionFactorSets'][i]);
-          // Provider.of<Login>(context, listen: false)
-          //     .getSelectedIntentionFactorSet();
-          // Provider.of<Login>(context, listen: false)
-          //     .getSelectedIntentionFactorSetName(
-          //         Provider.of<Login>(context, listen: false)
-          //                 .userData['userIntentionFactorSets'][i]
-          //             ['userIntentionFactorSetName']);
-          // Provider.of<Login>(context, listen: false).changecheck();
-        }
-      }
+      // for (var i = 0;
+      //     i <
+      //         Provider.of<Login>(context, listen: false)
+      //             .userData['userIntentionFactorSets']
+      //             .length;
+      //     i++) {
+      //   if (Provider.of<Login>(context, listen: false)
+      //               .userData['userIntentionFactorSets'][i]
+      //           ['userIntentionFactorSetContext'] ==
+      //       Provider.of<Login>(context, listen: false).currentContext) {
+      //     Provider.of<Login>(context, listen: false).getFitIntentionFactorSets(
+      //         Provider.of<Login>(context, listen: false)
+      //             .userData['userIntentionFactorSets'][i]);
+      // Provider.of<Login>(context, listen: false)
+      //     .getSelectedIntentionFactorSet();
+      // Provider.of<Login>(context, listen: false)
+      //     .getSelectedIntentionFactorSetName(
+      //         Provider.of<Login>(context, listen: false)
+      //                 .userData['userIntentionFactorSets'][i]
+      //             ['userIntentionFactorSetName']);
+      // Provider.of<Login>(context, listen: false).changecheck();
+      //   }
+      // }
 
       Geolocator.getCurrentPosition(
               desiredAccuracy: LocationAccuracy.best,
               forceAndroidLocationManager: true)
           .then((Position position) {
-        setState(() {
-          _currentLocation = position;
-          Provider.of<Login>(context, listen: false)
-              .getCurrentLocation(_currentLocation);
-        });
+        if (mounted) {
+          setState(() {
+            _currentLocation = position;
+            Provider.of<Login>(context, listen: false)
+                .getCurrentLocation(_currentLocation);
+          });
+        }
       }).catchError((e) {
         print(e);
       });
@@ -362,10 +370,12 @@ class _AdaptiveContextDropdownState extends State<AdaptiveContextDropdown> {
                   icon: Icon(Icons.arrow_drop_down),
                   style: Theme.of(context).textTheme.bodyText2,
                   onChanged: (String newValue) {
-                    setState(() {
-                      Provider.of<Login>(context, listen: false)
-                          .getSelectedIntentionFactorSetName(newValue);
-                    });
+                    if (mounted) {
+                      setState(() {
+                        Provider.of<Login>(context, listen: false)
+                            .getSelectedIntentionFactorSetName(newValue);
+                      });
+                    }
                   },
                   items: Provider.of<Login>(context, listen: false)
                               .fitContextIntentionFactorSetsName ==

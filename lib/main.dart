@@ -38,6 +38,7 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return Consumer<Login>(
       builder: (ctx, login, child) => MaterialApp(
+        debugShowCheckedModeBanner: false,
         title: 'deLeecious',
         theme: ThemeData(
           primarySwatch: Colors.pink,

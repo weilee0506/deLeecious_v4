@@ -10,6 +10,7 @@ class CommonItem extends StatelessWidget {
       // decoration: BoxDecoration(border: Border.all(color: Colors.red)),
       alignment: Alignment.center,
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: <Widget>[
           Container(
             child: Text(
@@ -21,8 +22,9 @@ class CommonItem extends StatelessWidget {
           ),
           Container(
             child: Text(
-              '請輸入 intention factors 以進行過濾',
+              '請輸入 intention factors',
               style: Theme.of(context).textTheme.headline5,
+              textAlign: TextAlign.center,
             ),
             padding: EdgeInsets.all(3),
           ),
