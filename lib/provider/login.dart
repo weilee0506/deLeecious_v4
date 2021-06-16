@@ -24,6 +24,10 @@ class Login with ChangeNotifier {
 
   Position _currenLocation;
 
+  double _currentLatitude;
+
+  double _currentLongitude;
+
   List _startTime = [0, 0, 0];
 
   List _endTime = [0, 0, 0];
@@ -91,6 +95,14 @@ class Login with ChangeNotifier {
 
   Position get currentLocation {
     return _currenLocation;
+  }
+
+  double get currentLatitude {
+    return _currentLatitude;
+  }
+
+  double get currentLongitude {
+    return _currentLongitude;
   }
 
   List get startTime {
@@ -269,7 +281,8 @@ class Login with ChangeNotifier {
     print(this._fitContextIntentionFactorSets);
     print(this._fitContextIntentionFactorSetsName);
 
-    print('system-initiated');
+    // print('system-initiated');
+    print('user group:  ${this._userData['userGroup']}');
 
     // if (this._userData['userGroup'] == 'no-personalization') {
     //   await getContext;
@@ -371,6 +384,14 @@ class Login with ChangeNotifier {
 
   Future getCurrentLocation(Position currentLocation) async {
     this._currenLocation = currentLocation;
+  }
+
+  Future getCurrentLatitude(double currentLat) async {
+    this._currentLatitude = currentLat;
+  }
+
+  Future getCurrentLongitude(double currentLon) async {
+    this._currentLongitude = currentLon;
   }
 
   Future login(String userEmailInput) async {

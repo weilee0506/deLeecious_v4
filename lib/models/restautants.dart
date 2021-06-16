@@ -39,7 +39,7 @@ class Restaurant {
       "lng.": "121.5325",
       "lat.": "25.01749",
       "time": "12:00-15:00, 17:00-21:30",
-      "cuisine_type": "俄羅斯式",
+      "cuisine_type": "俄式",
       "rating": "4.3",
       "inout": ['內用', '外帶'],
       "price_segment": "pp",

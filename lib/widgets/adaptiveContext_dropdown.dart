@@ -52,6 +52,9 @@ class _AdaptiveContextDropdownState extends State<AdaptiveContextDropdown> {
     //   get_context();
     // }
     super.initState();
+    Geolocator.getCurrentPosition().then((currloc) {
+      _currentLocation = currloc;
+    });
   }
 
   void get_context() async {
@@ -94,6 +97,9 @@ class _AdaptiveContextDropdownState extends State<AdaptiveContextDropdown> {
   }
 
   Future getContext() async {
+    Geolocator.getCurrentPosition().then((currloc) {
+      _currentLocation = currloc;
+    });
     //mix-initiated
     if (Provider.of<Login>(context, listen: false).userData['userGroup'] ==
         'mix-initiated') {
@@ -121,20 +127,24 @@ class _AdaptiveContextDropdownState extends State<AdaptiveContextDropdown> {
         }
       }
 
-      Geolocator.getCurrentPosition(
-              desiredAccuracy: LocationAccuracy.best,
-              forceAndroidLocationManager: true)
-          .then((Position position) {
-        if (mounted) {
-          setState(() {
-            _currentLocation = position;
-            Provider.of<Login>(context, listen: false)
-                .getCurrentLocation(_currentLocation);
-          });
-        }
-      }).catchError((e) {
-        print(e);
-      });
+      // Geolocator.getCurrentPosition(
+      //         desiredAccuracy: LocationAccuracy.best,
+      //         forceAndroidLocationManager: true)
+      //     .then((Position position) {
+      //   if (mounted) {
+      //     setState(() {
+      //       _currentLocation = position;
+      //       Provider.of<Login>(context, listen: false)
+      //           .getCurrentLocation(_currentLocation);
+      //       Provider.of<Login>(context, listen: false)
+      //           .getCurrentLatitude(_currentLocation.latitude);
+      //       Provider.of<Login>(context, listen: false)
+      //           .getCurrentLongitude(_currentLocation.longitude);
+      //     });
+      //   }
+      // }).catchError((e) {
+      //   print(e);
+      // });
     }
 
     //user-initiated
@@ -157,20 +167,24 @@ class _AdaptiveContextDropdownState extends State<AdaptiveContextDropdown> {
                         .userData['userIntentionFactorSets'][i]
                     ['userIntentionFactorSetName']);
       }
-      Geolocator.getCurrentPosition(
-              desiredAccuracy: LocationAccuracy.best,
-              forceAndroidLocationManager: true)
-          .then((Position position) {
-        if (mounted) {
-          setState(() {
-            _currentLocation = position;
-            Provider.of<Login>(context, listen: false)
-                .getCurrentLocation(_currentLocation);
-          });
-        }
-      }).catchError((e) {
-        print(e);
-      });
+      // Geolocator.getCurrentPosition(
+      //         desiredAccuracy: LocationAccuracy.best,
+      //         forceAndroidLocationManager: true)
+      //     .then((Position position) {
+      //   if (mounted) {
+      //     setState(() {
+      //       _currentLocation = position;
+      //       Provider.of<Login>(context, listen: false)
+      //           .getCurrentLocation(_currentLocation);
+      //       Provider.of<Login>(context, listen: false)
+      //           .getCurrentLatitude(_currentLocation.latitude);
+      //       Provider.of<Login>(context, listen: false)
+      //           .getCurrentLongitude(_currentLocation.longitude);
+      //     });
+      //   }
+      // }).catchError((e) {
+      //   print(e);
+      // });
     }
 
     //no-personalization
@@ -182,20 +196,24 @@ class _AdaptiveContextDropdownState extends State<AdaptiveContextDropdown> {
           Provider.of<Login>(context, listen: false)
               .userData['userIntentionFactorSets'][0]);
 
-      Geolocator.getCurrentPosition(
-              desiredAccuracy: LocationAccuracy.best,
-              forceAndroidLocationManager: true)
-          .then((Position position) {
-        if (mounted) {
-          setState(() {
-            _currentLocation = position;
-            Provider.of<Login>(context, listen: false)
-                .getCurrentLocation(_currentLocation);
-          });
-        }
-      }).catchError((e) {
-        print(e);
-      });
+      // Geolocator.getCurrentPosition(
+      //         desiredAccuracy: LocationAccuracy.best,
+      //         forceAndroidLocationManager: true)
+      //     .then((Position position) {
+      //   // if (mounted) {
+      //   //   setState(() {
+      //   _currentLocation = position;
+      //   Provider.of<Login>(context, listen: false)
+      //       .getCurrentLocation(_currentLocation);
+      //   Provider.of<Login>(context, listen: false)
+      //       .getCurrentLatitude(_currentLocation.latitude);
+      //   Provider.of<Login>(context, listen: false)
+      //       .getCurrentLongitude(_currentLocation.longitude);
+      //   //   });
+      //   // }
+      // }).catchError((e) {
+      //   print(e);
+      // });
     }
 
     //system-initiated
@@ -311,20 +329,24 @@ class _AdaptiveContextDropdownState extends State<AdaptiveContextDropdown> {
       //   }
       // }
 
-      Geolocator.getCurrentPosition(
-              desiredAccuracy: LocationAccuracy.best,
-              forceAndroidLocationManager: true)
-          .then((Position position) {
-        if (mounted) {
-          setState(() {
-            _currentLocation = position;
-            Provider.of<Login>(context, listen: false)
-                .getCurrentLocation(_currentLocation);
-          });
-        }
-      }).catchError((e) {
-        print(e);
-      });
+      // Geolocator.getCurrentPosition(
+      //         desiredAccuracy: LocationAccuracy.best,
+      //         forceAndroidLocationManager: true)
+      //     .then((Position position) {
+      //   if (mounted) {
+      //     setState(() {
+      //       _currentLocation = position;
+      //       Provider.of<Login>(context, listen: false)
+      //           .getCurrentLocation(_currentLocation);
+      //       Provider.of<Login>(context, listen: false)
+      //           .getCurrentLatitude(_currentLocation.latitude);
+      //       Provider.of<Login>(context, listen: false)
+      //           .getCurrentLongitude(_currentLocation.longitude);
+      //     });
+      //   }
+      // }).catchError((e) {
+      //   print(e);
+      // });
     }
   }
 
@@ -351,6 +373,9 @@ class _AdaptiveContextDropdownState extends State<AdaptiveContextDropdown> {
                   ),
                   padding: EdgeInsets.all(5),
                 ),
+              // Container(
+              //   child: Text('$_currentLocation'),
+              // ),
               // SizedBox(
               //   width: 30,
               // ),

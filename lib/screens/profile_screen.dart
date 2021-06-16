@@ -59,7 +59,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
       "lng.": "121.5325",
       "lat.": "25.01749",
       "time": "12:00-15:00, 17:00-21:30",
-      "cuisine_type": "俄羅斯式",
+      "cuisine_type": "俄式",
       "rating": "4.3",
       "inout": ['內用', '外帶'],
       "price_segment": "pp",
@@ -2569,7 +2569,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
     },
     {
       "id": "183",
-      "name": "日本清華軒",
+      "name": "日式清華軒",
       "address": "臺北市中正區羅斯福路四段92號",
       "lng.": "121.535",
       "lat.": "25.01371",
@@ -3729,7 +3729,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
     },
     {
       "id": "266",
-      "name": "季丼屋 日本丼飯",
+      "name": "季丼屋 日式丼飯",
       "address": "臺北市中正區臺北市羅斯福路四段150號",
       "lng.": "121.536",
       "lat.": "25.01263",
@@ -5241,7 +5241,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
     },
     {
       "id": "372",
-      "name": "欣葉 日本料理 信義新天地A11",
+      "name": "欣葉 日式料理 信義新天地A11",
       "address": "臺北市信義區松壽路11號5樓",
       "lng.": "121.5671978",
       "lat.": "25.03603136",
@@ -5270,7 +5270,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
     },
     {
       "id": "374",
-      "name": "日本橋海鮮丼辻半 微風信義店",
+      "name": "日式橋海鮮丼辻半 微風信義店",
       "address": "臺北市信義區忠孝東路五段68號B1",
       "lng.": "121.5669658",
       "lat.": "25.04052952",
@@ -5281,7 +5281,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
       "inout": ['內用', '外帶'],
       "price_segment": "ppp",
       "info":
-          "https://ifoodie.tw/restaurant/5b42aac523679c72687410a3-日本橋海鮮丼つじ半-Tsujihan-微"
+          "https://ifoodie.tw/restaurant/5b42aac523679c72687410a3-日式橋海鮮丼つじ半-Tsujihan-微"
     },
     {
       "id": "375",
@@ -5689,7 +5689,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
       "rating": "4.3",
       "inout": ['內用'],
       "price_segment": "ppp",
-      "info": "https://ifoodie.tw/restaurant/559d2b31c03a103ee86c4946-心月懷石日本料理"
+      "info": "https://ifoodie.tw/restaurant/559d2b31c03a103ee86c4946-心月懷石日式料理"
     },
     {
       "id": "403",
@@ -6130,7 +6130,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
     },
     {
       "id": "433",
-      "name": "臺北君悅酒店 Irodori 彩日本料理",
+      "name": "臺北君悅酒店 Irodori 彩日式料理",
       "address": "臺北市信義區松壽路2號3樓",
       "lng.": "121.5629308",
       "lat.": "25.03521597",
@@ -6141,7 +6141,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
       "inout": ['內用'],
       "price_segment": "ppp",
       "info":
-          "https://ifoodie.tw/restaurant/559d1d3bc03a103ee86c4051-Irodori-彩日本料理-(君悅酒店)"
+          "https://ifoodie.tw/restaurant/559d1d3bc03a103ee86c4051-Irodori-彩日式料理-(君悅酒店)"
     },
     {
       "id": "434",
@@ -6174,7 +6174,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
     },
     {
       "id": "436",
-      "name": "純日本料理",
+      "name": "純日式料理",
       "address": "臺北市信義區忠孝東路五段31巷18弄5號",
       "lng.": "121.5659115",
       "lat.": "25.04172841",
@@ -6438,7 +6438,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
     },
     {
       "id": "454",
-      "name": "しゃぶしゃぶ温野菜日本涮涮鍋專門店 誠品信義店",
+      "name": "しゃぶしゃぶ温野菜日式涮涮鍋專門店 誠品信義店",
       "address": "臺北市信義區松高路11號4樓",
       "lng.": "121.5658766",
       "lat.": "25.03971727",
@@ -6933,7 +6933,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
     },
     {
       "id": "488",
-      "name": "石膳日本料理",
+      "name": "石膳日式料理",
       "address": "臺北市信義區基隆路一段428號",
       "lng.": "121.5597589",
       "lat.": "25.03381739",
@@ -6943,7 +6943,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
       "rating": "4.1",
       "inout": ['內用', '外帶'],
       "price_segment": "ppp",
-      "info": "https://ifoodie.tw/restaurant/55a57e97c03a10241de66b2b-石膳日本料理"
+      "info": "https://ifoodie.tw/restaurant/55a57e97c03a10241de66b2b-石膳日式料理"
     },
     {
       "id": "489",
@@ -8835,7 +8835,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
     },
     {
       "id": "619",
-      "name": "日本 冰見海鮮丼 粋鮨 信義新光店",
+      "name": "日式 冰見海鮮丼 粋鮨 信義新光店",
       "address": "臺北市信義區松壽路11號",
       "lng.": "121.567236",
       "lat.": "25.03653965",
@@ -9380,7 +9380,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
       "lng.": "121.5552827",
       "lat.": "25.000191",
       "time": "11:00-14:30, 17:30-21:00",
-      "cuisine_type": "日本",
+      "cuisine_type": "日式",
       "rating": "4.4",
       "inout": ['內用', '外帶'],
       "price_segment": "pp",
@@ -9604,7 +9604,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
       "lng.": "121.5443195",
       "lat.": "24.9949778",
       "time": "11:30-14:00, 17:00-21:00",
-      "cuisine_type": "日本",
+      "cuisine_type": "日式",
       "rating": "4.4",
       "inout": ['內用', '外帶'],
       "price_segment": "pp",
@@ -9812,7 +9812,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
       "lng.": "121.5397623",
       "lat.": "24.9923824",
       "time": "11:00-14:00, 17:00-21:00",
-      "cuisine_type": "日本",
+      "cuisine_type": "日式",
       "rating": "4.3",
       "inout": ['內用', '外帶'],
       "price_segment": "pp",
@@ -10344,7 +10344,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
       "lng.": "121.558128",
       "lat.": "24.9990486",
       "time": "11:30-21:00",
-      "cuisine_type": "日本",
+      "cuisine_type": "日式",
       "rating": "3.7",
       "inout": ['內用', '外帶'],
       "price_segment": "p",
@@ -10512,7 +10512,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
       "lng.": "121.570516",
       "lat.": "24.986033",
       "time": "11:30-14:00, 17:30-21:00",
-      "cuisine_type": "日本",
+      "cuisine_type": "日式",
       "rating": "4",
       "inout": ['內用', '外帶'],
       "price_segment": "pp",
@@ -13433,7 +13433,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
       "lng.": "121.5552827",
       "lat.": "25.000191",
       "time": "11:00-14:30, 17:30-21:00",
-      "cuisine_type": "日本",
+      "cuisine_type": "日式",
       "rating": "4.4",
       "inout": ['內用', '外帶'],
       "price_segment": "pp",
@@ -13657,7 +13657,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
       "lng.": "121.5443195",
       "lat.": "24.9949778",
       "time": "11:30-14:00, 17:00-21:00",
-      "cuisine_type": "日本",
+      "cuisine_type": "日式",
       "rating": "4.4",
       "inout": ['內用','外帶'],
       "price_segment": "pp",
@@ -13865,7 +13865,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
       "lng.": "121.5397623",
       "lat.": "24.9923824",
       "time": "11:00-14:00, 17:00-21:00",
-      "cuisine_type": "日本",
+      "cuisine_type": "日式",
       "rating": "4.3",
       "inout": ['內用', '外帶'],
       "price_segment": "pp",
@@ -14397,7 +14397,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
       "lng.": "121.558128",
       "lat.": "24.9990486",
       "time": "11:30-21:00",
-      "cuisine_type": "日本",
+      "cuisine_type": "日式",
       "rating": "3.7",
       "inout": ['內用','外帶'],
       "price_segment": "p",
@@ -14565,7 +14565,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
       "lng.": "121.570516",
       "lat.": "24.986033",
       "time": "11:30-14:00, 17:30-21:00",
-      "cuisine_type": "日本",
+      "cuisine_type": "日式",
       "rating": "4",
       "inout": ['內用','外帶'],
       "price_segment": "pp",

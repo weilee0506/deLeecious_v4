@@ -4,6 +4,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:intl/intl.dart';
+// import 'package:location/location.dart';
 
 import 'dart:math';
 import 'dart:async';
@@ -29,14 +30,21 @@ class _RecommendationScreenState extends State<RecommendationScreen> {
   List<Map> dataList;
   List<Map> resultList;
   bool isLoading;
+  bool isReady;
 
-  StreamController<double> controller = StreamController<double>();
+  int randomPositionGroup;
+  double currentLat;
+  double currentLon;
 
   CollectionReference restaurants =
       FirebaseFirestore.instance.collection('restaurants');
 
+  Random random = new Random();
+
   @override
   void initState() {
+    super.initState();
+
     candidateList = [];
     candidateListFilterPreference = [];
     candidateListFilterTime = [];
@@ -49,28 +57,69 @@ class _RecommendationScreenState extends State<RecommendationScreen> {
 
     resultList = [];
     isLoading = true;
-    // getRecommendation(
-    //     Provider.of<Login>(context, listen: false).selectedIntentionFactorSet[0]
-    //         ['intentionFactors'][0]['intentionFactorSelectedOption'],
-    //     Provider.of<Login>(context, listen: false).selectedIntentionFactorSet[0]
-    //         ['intentionFactors'][1]['intentionFactorSelectedOption']);
-    super.initState();
+    isReady = false;
+
+    currentLat = 0;
+    currentLon = 0;
+    randomPositionGroup = random.nextInt(3) + 1;
+
     getData();
   }
 
-  Future<DocumentSnapshot<Object>> getData() async {
+  Future<void> getData() async {
+    //文山區
+    if (randomPositionGroup == 1) {
+      currentLat = (random.nextInt(29870) + 24979953) / 1000000;
+      currentLon = (random.nextInt(59750) + 121530150) / 1000000;
+    }
+    //大安區
+    if (randomPositionGroup == 2) {
+      currentLat = (random.nextInt(36148) + 25008990) / 1000000;
+      currentLon = (random.nextInt(25136) + 121532736) / 1000000;
+    }
+    //信義區
+    if (randomPositionGroup == 3) {
+      currentLat = (random.nextInt(14615) + 25030122) / 1000000;
+      currentLon = (random.nextInt(20017) + 121560049) / 1000000;
+    }
+    print('currentLocaiton  $currentLat  $currentLon');
     Map<String, dynamic> restaurantData;
     CollectionReference restaurants =
         FirebaseFirestore.instance.collection('restaurants');
-    restaurants.get().then((querySnapshot) {
-      querySnapshot.docs.forEach((result) async {
-        restaurantData = Map<String, dynamic>.from(result.data());
-        dataList.add(restaurantData);
-      });
-      setState(() {
-        isLoading = false;
-      });
-    });
+    restaurants.get().then(
+      (querySnapshot) {
+        querySnapshot.docs.forEach((result) async {
+          restaurantData = Map<String, dynamic>.from(result.data());
+          this.dataList.add(restaurantData);
+        });
+        this.calculatePreference(
+          currentLat,
+          currentLon,
+          this.dataList,
+          Provider.of<Login>(context, listen: false)
+                  .selectedIntentionFactorSet[0]['intentionFactors'][0]
+              ['intentionFactorSelectedOption'],
+          Provider.of<Login>(context, listen: false)
+                  .selectedIntentionFactorSet[0]['intentionFactors'][1]
+              ['intentionFactorSelectedOption'],
+          Provider.of<Login>(context, listen: false).userData['userPreference'],
+          Provider.of<Login>(context, listen: false)
+                  .selectedIntentionFactorSet[0]['intentionFactors'][2]
+              ['intentionFactorSelectedOption'],
+          Provider.of<Login>(context, listen: false)
+                  .selectedIntentionFactorSet[0]['intentionFactors'][3]
+              ['intentionFactorSelectedOption'],
+          Provider.of<Login>(context, listen: false)
+                  .selectedIntentionFactorSet[0]['intentionFactors'][4]
+              ['intentionFactorSelectedOption'],
+        );
+        this.isLoading = false;
+
+        setState(() {});
+      },
+    );
+
+    return dataList;
   }
 
   Stream<QuerySnapshot> getRecommendation(
@@ -101,23 +150,6 @@ class _RecommendationScreenState extends State<RecommendationScreen> {
       }
       restaurants = restaurants.where('price_segment', isEqualTo: consumption);
     }
-    // if (rating != '不考慮') {
-    //   restaurants = restaurants.where('rating', isGreaterThan: 4);
-    // }
-    // print(restaurants.orderBy('rating', descending: true).limit(20).get());
-    // restaurants
-    //     .orderBy('rating', descending: true)
-    //     .limit(20)
-    //     .get()
-    //     .then((value) {
-    //   value.docs.forEach((element) {
-    //     candidateList.add(element.data());
-    //     // print(element.data());
-    //   });
-    //   print('aaa ${value.docs}');
-    //   print('bbb ${value.docs.length}');
-    // });
-    isLoading = false;
 
     return restaurants
         .orderBy('rating', descending: true)
@@ -125,7 +157,9 @@ class _RecommendationScreenState extends State<RecommendationScreen> {
         .snapshots();
   }
 
-  Future calculatePreference(
+  Future<void> calculatePreference(
+    double lat,
+    double lon,
     List dataList,
     String serviceSelectedOption,
     String consumptionSelectedOption,
@@ -133,19 +167,7 @@ class _RecommendationScreenState extends State<RecommendationScreen> {
     String timeSelectedOption,
     String distanceSelectedOption,
     String ratingSelectedOption,
-    // List<Map> candidateList,
-    // List<Map> candidateListFilterPreference,
-    // List<Map> candidateListFilterTime,
-    // List<Map> candidateListFilterDistance,
-    // List<Map> candidateListFilterRating,
-    // List<Map> candidateListFilterService,
-    // List<Map> candidateListFilterConsumption,
   ) {
-    // print(preferenceList);
-    // dataList.forEach((element) {
-    //   candidateList.add(element);
-    //   // print('candidateList    $element');
-    // });
     print('candidateList     $dataList');
     List cuisineTypeList = [
       '台式',
@@ -168,8 +190,10 @@ class _RecommendationScreenState extends State<RecommendationScreen> {
       '夏威夷式',
       '飲料',
       '咖啡',
-      '酒吧/餐酒館'
+      '餐酒館/酒吧'
     ];
+    List restaurantCuisineList = [];
+    List restaurantCosSimilarityList = [];
     this.dataList.forEach((element) {
       List cuisineList = [
         0,
@@ -200,36 +224,68 @@ class _RecommendationScreenState extends State<RecommendationScreen> {
           cuisineList[i] = 1;
         }
       }
-      //餐廳cuisine陣列加到candidateList裡面
-      element['cuisineList'] = cuisineList;
-      //算每個餐廳跟user的cosSimilarity，再加到candidateList裡面
-      element['cosSimilarity'] =
-          preferenceAlgo(preferenceList, element['cuisineList']);
-      // print('111  $cuisineList');
-      // print(element);
+      restaurantCuisineList.add(cuisineList);
     });
+    print(restaurantCuisineList);
+
+    for (int i = 0; i < this.dataList.length; i++) {
+      //餐廳cuisine陣列加到candidateList裡面
+      this
+          .dataList[i]
+          .putIfAbsent('cuisineList', () => restaurantCuisineList[i]);
+
+      //算每個餐廳跟user的cosSimilarity
+      double cosSimilarity =
+          this.preferenceAlgo(preferenceList, dataList[i]['cuisineList']);
+      restaurantCosSimilarityList.add(cosSimilarity);
+      //餐廳跟user的cosSimilarity加到candidateList裡面
+
+      this
+          .dataList[i]
+          .putIfAbsent('cosSimilarity', () => restaurantCosSimilarityList[i]);
+    }
+    print(restaurantCosSimilarityList);
+
+    // for (int i = 0; i < restaurantCuisineList.length; i++) {
+    //   if (restaurantCuisineList[i] ==
+    //       [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]) {
+    //     print(i);
+    //   }
+    // }
+
+    // for (int i = 0; i < this.dataList.length; i++) {
+    //   if (this.dataList[i]['cosSimilarity'] != 0) {
+    //     print(this.dataList[i]['cosSimilarity']);
+    //     print(i);
+    //   }
+    // }
+
+    // print('--------');
+
     this
         .dataList
         .sort((a, b) => (b['cosSimilarity']).compareTo(a['cosSimilarity']));
+
     this.candidateListFilterPreference = this
         .dataList
         .where((element) => element['cosSimilarity'] != 0)
         .toList();
 
     this.candidateListFilterPreference.forEach((element) {
-      double distance = calculateDistance(
-          element['lat'],
-          element['lng'],
-          Provider.of<Login>(context, listen: false).currentLocation.latitude,
-          Provider.of<Login>(context, listen: false).currentLocation.longitude);
+      double distance =
+          this.calculateDistance(element['lat'], element['lng'], lat, lon);
       element['distance'] = distance.toStringAsFixed(2);
     });
+
+    print(randomPositionGroup);
+    print(candidateListFilterPreference);
 
     if (timeSelectedOption == '不考慮') {
       this.candidateListFilterPreference.forEach((element) {
         this.candidateListFilterTime.add(element);
       });
     }
+
     if (timeSelectedOption == '少於30分鐘') {
       this.candidateListFilterPreference.forEach((element) {
         if (double.parse(element['distance']) < 0.5) {
@@ -237,6 +293,7 @@ class _RecommendationScreenState extends State<RecommendationScreen> {
         }
       });
     }
+
     if (timeSelectedOption == '30分鐘至2小時') {
       this.candidateListFilterPreference.forEach((element) {
         if (double.parse(element['distance']) > 0.5 &&
@@ -245,12 +302,14 @@ class _RecommendationScreenState extends State<RecommendationScreen> {
         }
       });
     }
+
     if (this.candidateListFilterTime.length != 0) {
       if (distanceSelectedOption == '不考慮') {
         this.candidateListFilterTime.forEach((element) {
           this.candidateListFilterDistance.add(element);
         });
       }
+
       if (distanceSelectedOption == '少於500公尺') {
         this.candidateListFilterTime.forEach((element) {
           if (double.parse(element['distance']) < 0.5) {
@@ -258,6 +317,7 @@ class _RecommendationScreenState extends State<RecommendationScreen> {
           }
         });
       }
+
       if (distanceSelectedOption == '500至2000公尺') {
         this.candidateListFilterTime.forEach((element) {
           if (double.parse(element['distance']) > 0.5 &&
@@ -274,6 +334,7 @@ class _RecommendationScreenState extends State<RecommendationScreen> {
           this.candidateListFilterRating.add(element);
         });
       }
+
       if (ratingSelectedOption == '四顆星以上') {
         this
             .candidateListFilterDistance
@@ -292,20 +353,16 @@ class _RecommendationScreenState extends State<RecommendationScreen> {
       }
       if (serviceSelectedOption == '內用') {
         this.candidateListFilterRating.forEach((element) {
-          element['inout'].forEach((element) {
-            if (element == '內用') {
-              this.candidateListFilterService.add(element);
-            }
-          });
+          if (element['inout'].contains(serviceSelectedOption)) {
+            this.candidateListFilterService.add(element);
+          }
         });
       }
       if (serviceSelectedOption == '外帶') {
         this.candidateListFilterRating.forEach((element) {
-          element['inout'].forEach((element) {
-            if (element == '外帶') {
-              this.candidateListFilterService.add(element);
-            }
-          });
+          if (element['inout'].contains(serviceSelectedOption)) {
+            this.candidateListFilterService.add(element);
+          }
         });
       }
     }
@@ -318,21 +375,21 @@ class _RecommendationScreenState extends State<RecommendationScreen> {
       }
       if (consumptionSelectedOption == '\$') {
         this.candidateListFilterService.forEach((element) {
-          if (element['consumption'] == 'p') {
+          if (element['price_segment'] == 'p') {
             this.candidateListFilterConsumption.add(element);
           }
         });
       }
       if (consumptionSelectedOption == '\$\$') {
         this.candidateListFilterService.forEach((element) {
-          if (element['consumption'] == 'pp') {
+          if (element['price_segment'] == 'pp') {
             this.candidateListFilterConsumption.add(element);
           }
         });
       }
       if (consumptionSelectedOption == '\$\$\$') {
         this.candidateListFilterService.forEach((element) {
-          if (element['consumption'] == 'ppp') {
+          if (element['price_segment'] == 'ppp') {
             this.candidateListFilterConsumption.add(element);
           }
         });
@@ -353,27 +410,46 @@ class _RecommendationScreenState extends State<RecommendationScreen> {
             i++) {
           this.resultList.add(this.candidateListFilterConsumption[i]);
         }
+        // setState(() {
+        // this.isReady = true;
+        // this.isLoading = false;
+
+        // setState(() {});
+        this.isLoading = false;
+        // });
       } else {
         for (int i = 0; i < 10; i++) {
           this.resultList.add(this.candidateListFilterConsumption[i]);
         }
+        // this.isLoading = false;
+
+        // setState(() {});
       }
     }
 
     // print(candidateList.length);
-    print(this.dataList.length);
-    print(this.candidateListFilterPreference.length);
-    print(this.candidateListFilterTime.length);
+    print('dataList:  ${this.dataList.length}');
+    print(
+        'candidateListFilterPreference:  ${this.candidateListFilterPreference.length}');
+    print('candidateListFilterTime:  ${this.candidateListFilterTime.length}');
 
-    print(this.candidateListFilterDistance.length);
-    print(this.candidateListFilterRating.length);
-    print(this.candidateListFilterService.length);
+    print(
+        'candidateListFilterDistance:  ${this.candidateListFilterDistance.length}');
+    print(
+        'candidateListFilterRating:  ${this.candidateListFilterRating.length}');
+    print(
+        'candidateListFilterService:  ${this.candidateListFilterService.length}');
 
-    print(this.candidateListFilterConsumption.length);
+    print(
+        'candidateListFilterConsumption:  ${this.candidateListFilterConsumption.length}');
     print(this.resultList);
-    print(this.resultList.length);
+    print('resultList:  ${this.resultList.length}');
+    // setState(() {
+    //   this.isLoading = false;
+    // });
 
     // print(resultList.length);
+    // return resultList;
   }
 
   double preferenceAlgo(List preferenceList, List cuisineList) {
@@ -597,7 +673,7 @@ class _RecommendationScreenState extends State<RecommendationScreen> {
               child: TextButton(
                 onPressed: () async {
                   await Firebase.initializeApp();
-                  selectRestaurant(
+                  this.selectRestaurant(
                     userEmail,
                     name,
                     selectedService,
@@ -645,189 +721,58 @@ class _RecommendationScreenState extends State<RecommendationScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('recommendation'),
-      ),
-      body: Consumer<Login>(
-        builder: (context, login, child) {
-          if (isLoading == false) {
-            calculatePreference(
-              dataList,
-              login.selectedIntentionFactorSet[0]['intentionFactors'][0]
-                  ['intentionFactorSelectedOption'],
-              login.selectedIntentionFactorSet[0]['intentionFactors'][1]
-                  ['intentionFactorSelectedOption'],
-              login.userData['userPreference'],
-              login.selectedIntentionFactorSet[0]['intentionFactors'][2]
-                  ['intentionFactorSelectedOption'],
-              login.selectedIntentionFactorSet[0]['intentionFactors'][3]
-                  ['intentionFactorSelectedOption'],
-              login.selectedIntentionFactorSet[0]['intentionFactors'][4]
-                  ['intentionFactorSelectedOption'],
-              // candidateList,
-              // candidateListFilterPreference,
-              // candidateListFilterTime,
-              // candidateListFilterDistance,
-              // candidateListFilterRating,
-              // candidateListFilterService,
-              // candidateListFilterConsumption,
-            );
-          }
-          return isLoading
-              ? Center(
-                  child: CircularProgressIndicator(),
-                )
-              : (this.resultList.length == 0)
-                  ? Center(
-                      child: Text('get 0 result'),
-                    )
-                  : Scrollbar(
-                      child: ListView.builder(
-                        itemBuilder: (ctx, index) {
-                          return resultItem(
-                              ctx,
-                              resultList[index]['name'],
-                              resultList[index]['address'],
-                              resultList[index]['cuisine_type'],
-                              resultList[index]['inout'],
-                              resultList[index]['price_segment'],
-                              login.selectedIntentionFactorSet[0]
-                                      ['intentionFactors'][2]
-                                  ['intentionFactorSelectedOption'],
-                              resultList[index]['distance'],
-                              resultList[index]['rating'],
-                              login.userData['userEmail'],
-                              login.selectedIntentionFactorSet[0]
-                                      ['intentionFactors'][0]
-                                  ['intentionFactorSelectedOption'],
-                              login.selectedIntentionFactorSet[0]
-                                      ['intentionFactors'][1]
-                                  ['intentionFactorSelectedOption'],
-                              login.selectedIntentionFactorSet[0]
-                                      ['intentionFactors'][2]
-                                  ['intentionFactorSelectedOption'],
-                              login.selectedIntentionFactorSet[0]
-                                      ['intentionFactors'][3]
-                                  ['intentionFactorSelectedOption'],
-                              login.selectedIntentionFactorSet[0]
-                                      ['intentionFactors'][4]
-                                  ['intentionFactorSelectedOption'],
-                              resultList[index]['cuisineList']);
-                        },
-                        // itemCount: snapshot.data.docs.length,/
-                        itemCount: resultList.length,
-                      ),
-                    );
-
-          // StreamBuilder(
-          //   stream: FirebaseFirestore.instance
-          //       .collection('restaurants')
-          //       .snapshots(),
-          //   builder: (BuildContext context, AsyncSnapshot snapshot) {
-          // if (snapshot.connectionState == ConnectionState.done) {
-          //   return Center(
-          //     child: Text('done'),
-          //   );
-          // }
-          // if (snapshot.connectionState == ConnectionState.waiting) {
-          //   return Center(
-          //     child: Text('waiting'),
-          //   );
-          // }
-          // if (snapshot.connectionState == ConnectionState.none) {
-          //   return Center(
-          //     child: Text('none'),
-          //   );
-          // }
-          // if (snapshot.connectionState == ConnectionState.active) {
-          //   return Center(
-          //     child: Text('active'),
-          //   );
-          // }
-          // if (!snapshot.hasData) {
-          //   return Center(
-          //     child: CircularProgressIndicator(),
-          //   );
-          // }
-          // if (snapshot.hasData) {
-          //   calculatePreference(
-          //     snapshot,
-          //     login.selectedIntentionFactorSet[0]['intentionFactors'][0]
-          //         ['intentionFactorSelectedOption'],
-          //     login.selectedIntentionFactorSet[0]['intentionFactors'][1]
-          //         ['intentionFactorSelectedOption'],
-          //     login.userData['userPreference'],
-          //     login.selectedIntentionFactorSet[0]['intentionFactors'][2]
-          //         ['intentionFactorSelectedOption'],
-          //     login.selectedIntentionFactorSet[0]['intentionFactors'][3]
-          //         ['intentionFactorSelectedOption'],
-          //     login.selectedIntentionFactorSet[0]['intentionFactors'][4]
-          //         ['intentionFactorSelectedOption'],
-          //   );
-          //   return (resultList.length == 0)
-          //       ? Center(
-          //           child: Text('get 0 result'),
-          //         )
-          //       : Scrollbar(
-          //           child: ListView.builder(
-          //             itemBuilder: (ctx, index) {
-          //               return resultItem(
-          //                   ctx,
-          //                   resultList[index]['name'],
-          //                   resultList[index]['address'],
-          //                   resultList[index]['cuisine_type'],
-          //                   resultList[index]['inout'],
-          //                   resultList[index]['price_segment'],
-          //                   login.selectedIntentionFactorSet[0]
-          //                           ['intentionFactors'][2]
-          //                       ['intentionFactorSelectedOption'],
-          //                   resultList[index]['distance'],
-          //                   resultList[index]['rating'],
-          //                   login.userData['userEmail'],
-          //                   login.selectedIntentionFactorSet[0]
-          //                           ['intentionFactors'][0]
-          //                       ['intentionFactorSelectedOption'],
-          //                   login.selectedIntentionFactorSet[0]
-          //                           ['intentionFactors'][1]
-          //                       ['intentionFactorSelectedOption'],
-          //                   login.selectedIntentionFactorSet[0]
-          //                           ['intentionFactors'][2]
-          //                       ['intentionFactorSelectedOption'],
-          //                   login.selectedIntentionFactorSet[0]
-          //                           ['intentionFactors'][3]
-          //                       ['intentionFactorSelectedOption'],
-          //                   login.selectedIntentionFactorSet[0]
-          //                           ['intentionFactors'][4]
-          //                       ['intentionFactorSelectedOption'],
-          //                   resultList[index]['cuisineList']);
-          //             },
-          //             // itemCount: snapshot.data.docs.length,/
-          //             itemCount: resultList.length,
-          //           ),
-          //         );
-          // }
-
-          // if (snapshot.connectionState == ConnectionState.active) {
-          //   return Center(
-          //     child: Text('active'),
-          //   );
-          // }
-
-          // calculatePreference(
-          //   snapshot,
-          //   login.userData['userPreference'],
-          //   login.selectedIntentionFactorSet[0]['intentionFactors'][2]
-          //       ['intentionFactorSelectedOption'],
-          //   login.selectedIntentionFactorSet[0]['intentionFactors'][3]
-          //       ['intentionFactorSelectedOption'],
-          //   login.selectedIntentionFactorSet[0]['intentionFactors'][4]
-          //       ['intentionFactorSelectedOption'],
-          // );
-          //   },
-          // );
-        },
-      ),
+    return Consumer<Login>(
+      builder: (context, login, child) {
+        return Scaffold(
+            appBar: AppBar(
+              title: Text('recommendation'),
+            ),
+            body: this.isLoading
+                ? Center(
+                    child: CircularProgressIndicator(),
+                  )
+                : Scrollbar(
+                    child: resultList.length == 0
+                        ? Center(
+                            child: Text('找到0筆相符的餐廳'),
+                          )
+                        : ListView.builder(
+                            itemBuilder: (ctx, index) {
+                              return resultItem(
+                                  ctx,
+                                  this.resultList[index]['name'],
+                                  this.resultList[index]['address'],
+                                  this.resultList[index]['cuisine_type'],
+                                  this.resultList[index]['inout'],
+                                  this.resultList[index]['price_segment'],
+                                  login.selectedIntentionFactorSet[0]
+                                          ['intentionFactors'][2]
+                                      ['intentionFactorSelectedOption'],
+                                  this.resultList[index]['distance'],
+                                  this.resultList[index]['rating'],
+                                  login.userData['userEmail'],
+                                  login.selectedIntentionFactorSet[0]
+                                          ['intentionFactors'][0]
+                                      ['intentionFactorSelectedOption'],
+                                  login.selectedIntentionFactorSet[0]
+                                          ['intentionFactors'][1]
+                                      ['intentionFactorSelectedOption'],
+                                  login.selectedIntentionFactorSet[0]
+                                          ['intentionFactors'][2]
+                                      ['intentionFactorSelectedOption'],
+                                  login.selectedIntentionFactorSet[0]
+                                          ['intentionFactors'][3]
+                                      ['intentionFactorSelectedOption'],
+                                  login.selectedIntentionFactorSet[0]
+                                          ['intentionFactors'][4]
+                                      ['intentionFactorSelectedOption'],
+                                  this.resultList[index]['cuisineList']);
+                            },
+                            // itemCount: snapshot.data.docs.length,/
+                            itemCount: this.resultList.length,
+                          ),
+                  ));
+      },
     );
   }
 }
