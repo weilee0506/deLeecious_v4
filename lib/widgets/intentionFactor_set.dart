@@ -21,8 +21,7 @@ class _IntentionFactorSetState extends State<IntentionFactorSet> {
   String currentContext;
   List fitContextIntentionFactorSets = [];
   List<String> fitContextIntentionFactorSetsName = [];
-  // String selectedIntentionFactorSetName;
-  // Position _currentLocation;
+
   int weatherCount = 0;
   int intentionFactorSetIndexForSystemInitiated;
   List contextList = [
@@ -37,14 +36,10 @@ class _IntentionFactorSetState extends State<IntentionFactorSet> {
   ];
   @override
   void initState() {
-    // if (Provider.of<Login>(context, listen: false).userData['userGroup'] ==
-    //     'system-initiated') {
     Provider.of<Login>(context, listen: false)
         .getSelectedIntenitonFactorsetForSystemInitiated(
             Provider.of<Login>(context, listen: false).get_context());
-    // }
-    // get_context();
-    //
+
     print('hi');
     super.initState();
   }
@@ -76,12 +71,6 @@ class _IntentionFactorSetState extends State<IntentionFactorSet> {
       dayNight = 'night';
     }
     currentContext = '$weatherGoodBad$weekdayWeekend$dayNight';
-    // for (int i = 0; i < 8; i++) {
-    //   if (contextList[i] == currentContext) {
-    //     intentionFactorSetIndexForSystemInitiated = i;
-    //     print('check');
-    //   }
-    // }
 
     Provider.of<Login>(context, listen: false)
         .getCurrentContext(currentContext);
@@ -133,46 +122,10 @@ class _IntentionFactorSetState extends State<IntentionFactorSet> {
   }
 
   Future<List> getSelectedIntentionFactorSet() async {
-    // if (Provider.of<Login>(context, listen: false).userData['userGroup'] ==
-    //     'no-personalization') {
-    //   print('bbb');
-    //   await Provider.of<Login>(context, listen: false)
-    //       .getSelectedIntentionFactorSetNoPersonalization();
-    //   print('ddd');
-    // }
-    // if (Provider.of<Login>(context, listen: false).userData['userGroup'] ==
-    //         'mix-initiated' ||
-    //     Provider.of<Login>(context, listen: false).userData['userGroup'] ==
-    //         'user-initiated') {
-    // await new Future.delayed(const Duration(seconds: 1));
-    // if (Provider.of<Login>(context, listen: false).userData['userGroup'] ==
-    //     'system-initiated') {
-    //   Provider.of<Login>(context, listen: false)
-    //       .get_selectedIntenitonFactorset();
-    //   return Provider.of<Login>(context, listen: false)
-    //       .selectedIntentionFactorSet;
-    // }
-    // Future.delayed(Duration(seconds: 2));
-    // if (Provider.of<Login>(context, listen: false).selectedIntentionFactorSet ==
-    //     null) {
-    //   Provider.of<Login>(context, listen: false)
-    //       .getSelectedIntentionFactorSet();
-    // } else {
-    //   print('zzz');
-    // }
-    // Provider.of<Login>(context, listen: false).get_context();
-    // if (Provider.of<Login>(context, listen: false).userData['userGroup'] ==
-    //     'system-initiated') {
-    //   Provider.of<Login>(context, listen: false)
-    //       .getSelectedIntenitonFactorsetForSystemInitiated(
-    //           Provider.of<Login>(context, listen: false).get_context());
-    // } else {
     Provider.of<Login>(context, listen: false).getSelectedIntentionFactorSet();
-    // }
 
     return Provider.of<Login>(context, listen: false)
         .selectedIntentionFactorSet;
-    // }
   }
 
   void get_selectedIntentionFactorSet() async {
@@ -185,12 +138,6 @@ class _IntentionFactorSetState extends State<IntentionFactorSet> {
     if (Provider.of<Login>(context, listen: false).userData['userGroup'] ==
         'system-initiated') {
       return Consumer<Login>(builder: (context, login, child) {
-        // if (login.selectedIntentionFactorSet == []) {
-        //   print('shit');
-        //   return Container(
-        //     child: Text('fuck'),
-        //   );
-        // }
         return login.selectedIntentionFactorSet == null
             ? Center(
                 child: Text('請選擇一組傾向因素組合'),
@@ -312,138 +259,7 @@ class _IntentionFactorSetState extends State<IntentionFactorSet> {
       return FutureBuilder(
         future: getSelectedIntentionFactorSet(),
         builder: (BuildContext context, AsyncSnapshot snapshot) {
-          // if (snapshot.connectionState == ConnectionState.waiting) {
-          //   return Container(child: Text('shit'));
-          // }
-          // if (snapshot.connectionState == ConnectionState.done) {
-          //   return Consumer<Login>(builder: (context, login, child) {
-          //     return Expanded(
-          //       child: Container(
-          //         width: double.infinity,
-          //         child: Column(
-          //           children: <Widget>[
-          //             buildIntentionFactorDropdownButton(
-          //               context,
-          //               snapshot.data[0]['intentionFactors'][0]
-          //                   ['intentionFactorName'],
-          //               snapshot.data[0]['intentionFactors'][0]
-          //                   ['intentionFactorSelectedOption'],
-          //               snapshot.data[0]['intentionFactors'][0]
-          //                   ['intentionFactorStatus'],
-          //               login.intentionFactor['intentionFactor'][0]
-          //                       ['intentionFactorOption']
-          //                   .cast<String>(),
-          //               (value) {
-          //                 setState(() {
-          //                   snapshot.data[0]['intentionFactors'][0]
-          //                       ['intentionFactorSelectedOption'] = value;
-          //                 });
-          //               },
-          //             ),
-          //             buildIntentionFactorDropdownButton(
-          //               context,
-          //               snapshot.data[0]['intentionFactors'][1]
-          //                   ['intentionFactorName'],
-          //               snapshot.data[0]['intentionFactors'][1]
-          //                   ['intentionFactorSelectedOption'],
-          //               snapshot.data[0]['intentionFactors'][1]
-          //                   ['intentionFactorStatus'],
-          //               login.intentionFactor['intentionFactor'][1]
-          //                       ['intentionFactorOption']
-          //                   .cast<String>(),
-          //               (value) {
-          //                 setState(() {
-          //                   snapshot.data[0]['intentionFactors'][1]
-          //                       ['intentionFactorSelectedOption'] = value;
-          //                 });
-          //               },
-          //             ),
-          //             buildIntentionFactorDropdownButton(
-          //               context,
-          //               snapshot.data[0]['intentionFactors'][2]
-          //                   ['intentionFactorName'],
-          //               snapshot.data[0]['intentionFactors'][2]
-          //                   ['intentionFactorSelectedOption'],
-          //               snapshot.data[0]['intentionFactors'][2]
-          //                   ['intentionFactorStatus'],
-          //               login.intentionFactor['intentionFactor'][2]
-          //                       ['intentionFactorOption']
-          //                   .cast<String>(),
-          //               (value) {
-          //                 setState(() {
-          //                   snapshot.data[0]['intentionFactors'][2]
-          //                       ['intentionFactorSelectedOption'] = value;
-          //                 });
-          //               },
-          //             ),
-          //             buildIntentionFactorDropdownButton(
-          //               context,
-          //               snapshot.data[0]['intentionFactors'][3]
-          //                   ['intentionFactorName'],
-          //               snapshot.data[0]['intentionFactors'][3]
-          //                   ['intentionFactorSelectedOption'],
-          //               snapshot.data[0]['intentionFactors'][3]
-          //                   ['intentionFactorStatus'],
-          //               login.intentionFactor['intentionFactor'][3]
-          //                       ['intentionFactorOption']
-          //                   .cast<String>(),
-          //               (value) {
-          //                 setState(() {
-          //                   snapshot.data[0]['intentionFactors'][3]
-          //                       ['intentionFactorSelectedOption'] = value;
-          //                 });
-          //               },
-          //             ),
-          //             buildIntentionFactorDropdownButton(
-          //               context,
-          //               snapshot.data[0]['intentionFactors'][4]
-          //                   ['intentionFactorName'],
-          //               snapshot.data[0]['intentionFactors'][4]
-          //                   ['intentionFactorSelectedOption'],
-          //               snapshot.data[0]['intentionFactors'][4]
-          //                   ['intentionFactorStatus'],
-          //               login.intentionFactor['intentionFactor'][4]
-          //                       ['intentionFactorOption']
-          //                   .cast<String>(),
-          //               (value) {
-          //                 setState(() {
-          //                   snapshot.data[0]['intentionFactors'][4]
-          //                       ['intentionFactorSelectedOption'] = value;
-          //                 });
-          //               },
-          //             ),
-          //           ],
-          //         ),
-          //       ),
-          //     );
-          //   });
-          // }
-          // switch (snapshot.connectionState) {
-          //   case ConnectionState.none:
-          //     print('a');
-          //     return Container();
-          //     break;
-
-          // case ConnectionState.waiting:
-          //   print('b');
-          //   return Container();
-          //   break;
-
-          //   case ConnectionState.active:
-          //     print('c');
-          //     return Container();
-          //     break;
-
-          //   case ConnectionState.done:
-          //     print('d');
-
           return Consumer<Login>(builder: (context, login, child) {
-            // if (login.selectedIntentionFactorSet == []) {
-            //   print('shit');
-            //   return Container(
-            //     child: Text('fuck'),
-            //   );
-            // }
             return login.selectedIntentionFactorSet == null
                 ? Center(
                     child: Text('請選擇一組傾向因素組合'),
@@ -571,10 +387,6 @@ class _IntentionFactorSetState extends State<IntentionFactorSet> {
                     ),
                   );
           });
-
-          // break;
-          // }
-          // return Container();
         },
       );
     }

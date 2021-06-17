@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:geolocator/geolocator.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:intl/intl.dart';
-// import 'package:location/location.dart';
 
 import 'dart:math';
 import 'dart:async';
@@ -246,22 +244,6 @@ class _RecommendationScreenState extends State<RecommendationScreen> {
     }
     print(restaurantCosSimilarityList);
 
-    // for (int i = 0; i < restaurantCuisineList.length; i++) {
-    //   if (restaurantCuisineList[i] ==
-    //       [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]) {
-    //     print(i);
-    //   }
-    // }
-
-    // for (int i = 0; i < this.dataList.length; i++) {
-    //   if (this.dataList[i]['cosSimilarity'] != 0) {
-    //     print(this.dataList[i]['cosSimilarity']);
-    //     print(i);
-    //   }
-    // }
-
-    // print('--------');
-
     this
         .dataList
         .sort((a, b) => (b['cosSimilarity']).compareTo(a['cosSimilarity']));
@@ -410,24 +392,15 @@ class _RecommendationScreenState extends State<RecommendationScreen> {
             i++) {
           this.resultList.add(this.candidateListFilterConsumption[i]);
         }
-        // setState(() {
-        // this.isReady = true;
-        // this.isLoading = false;
 
-        // setState(() {});
         this.isLoading = false;
-        // });
       } else {
         for (int i = 0; i < 10; i++) {
           this.resultList.add(this.candidateListFilterConsumption[i]);
         }
-        // this.isLoading = false;
-
-        // setState(() {});
       }
     }
 
-    // print(candidateList.length);
     print('dataList:  ${this.dataList.length}');
     print(
         'candidateListFilterPreference:  ${this.candidateListFilterPreference.length}');
@@ -444,12 +417,6 @@ class _RecommendationScreenState extends State<RecommendationScreen> {
         'candidateListFilterConsumption:  ${this.candidateListFilterConsumption.length}');
     print(this.resultList);
     print('resultList:  ${this.resultList.length}');
-    // setState(() {
-    //   this.isLoading = false;
-    // });
-
-    // print(resultList.length);
-    // return resultList;
   }
 
   double preferenceAlgo(List preferenceList, List cuisineList) {
@@ -482,18 +449,6 @@ class _RecommendationScreenState extends State<RecommendationScreen> {
     String selectedRating,
     List restaurantCuisineList,
   ) async {
-    // CollectionReference usersSelect =
-    //     FirebaseFirestore.instance.collection('usersSelect');
-    // usersSelect.add({
-    //   'user': userEmail,
-    //   'restautant': selectedRestaurant,
-    //   'timeStamp': DateFormat.yMd().add_Hms().format(DateTime.now()),
-    //   'service': selectedService,
-    //   'consumption': selectedConsumption,
-    //   'time': selectedTime,
-    //   'distance': selectedDistance,
-    //   'rating': selectedRating,
-    // });
     CollectionReference usersSelect =
         FirebaseFirestore.instance.collection('usersSelect');
     usersSelect.doc('WMMjsjcVadtZAzWsid3c').update({
@@ -543,17 +498,6 @@ class _RecommendationScreenState extends State<RecommendationScreen> {
         }
       ])
     });
-
-    // Provider.of<Login>(context, listen: false).setEndTime(
-    //     DateFormat.H().format(DateTime.now()),
-    //     DateFormat.m().format(DateTime.now()),
-    //     DateFormat.s().format(DateTime.now()));
-    // int hour = int.parse(DateFormat.H().format(DateTime.now())) -
-    //     int.parse(Provider.of<Login>(context, listen: false).startTime[0]);
-    // int minute = int.parse(DateFormat.m().format(DateTime.now())) -
-    //     int.parse(Provider.of<Login>(context, listen: false).startTime[1]);
-    // int second = int.parse(DateFormat.s().format(DateTime.now())) -
-    //     int.parse(Provider.of<Login>(context, listen: false).startTime[2]);
 
     int startSeconds =
         int.parse(Provider.of<Login>(context, listen: false).startTime[0]) *
@@ -605,9 +549,6 @@ class _RecommendationScreenState extends State<RecommendationScreen> {
         DateFormat.m().format(DateTime.now()),
         DateFormat.s().format(DateTime.now()));
 
-    // CollectionReference usersEvent =
-    //     FirebaseFirestore.instance.collection('usersEvent');
-
     Navigator.of(context).pop(context);
   }
 
@@ -641,8 +582,6 @@ class _RecommendationScreenState extends State<RecommendationScreen> {
       consumption = '1200元以上';
     }
     return Container(
-      // onTap: () {},
-      // borderRadius: BorderRadius.circular(15),
       child: Card(
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(15),
@@ -732,20 +671,6 @@ class _RecommendationScreenState extends State<RecommendationScreen> {
     return 12742 * asin(sqrt(a));
   }
 
-  // void _getCurrentLocation() {
-  //   Geolocator.getCurrentPosition(
-  //           desiredAccuracy: LocationAccuracy.best,
-  //           forceAndroidLocationManager: true)
-  //       .then((Position position) {
-  //     setState(() {
-  //       _currentPosition = position;
-  //     });
-  //   }).catchError((e) {
-  //     print(e);
-  //   });
-  //   print(_currentPosition);
-  // }
-
   @override
   Widget build(BuildContext context) {
     return Consumer<Login>(
@@ -795,7 +720,6 @@ class _RecommendationScreenState extends State<RecommendationScreen> {
                                       ['intentionFactorSelectedOption'],
                                   this.resultList[index]['cuisineList']);
                             },
-                            // itemCount: snapshot.data.docs.length,/
                             itemCount: this.resultList.length,
                           ),
                   ));

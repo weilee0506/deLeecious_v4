@@ -34,8 +34,6 @@ class Login with ChangeNotifier {
 
   int _intentionFactorSetIndexForSystemInitiated;
 
-  bool _check = false;
-
   List _intentionFactorSetBeforeEdit;
   List _intentionFactorSetAfterEdit;
 
@@ -113,10 +111,6 @@ class Login with ChangeNotifier {
     return _intentionFactorSetIndexForSystemInitiated;
   }
 
-  bool get check {
-    return check;
-  }
-
   List get intentionFactorSetBeforeEdit {
     return _intentionFactorSetBeforeEdit;
   }
@@ -133,10 +127,6 @@ class Login with ChangeNotifier {
   void setIntentionFactorSetAfterEdit(List afterEdit) {
     this._intentionFactorSetAfterEdit = afterEdit;
     print('after: ${this._intentionFactorSetAfterEdit}');
-  }
-
-  void changecheck() {
-    this._check = true;
   }
 
   void setIntentionFactorSetIndexForSystemInitiated(
@@ -388,15 +378,7 @@ class Login with ChangeNotifier {
       dayNight = '晚上';
     }
     this._currentContext = '$weatherGoodBad$weekdayWeekend$dayNight';
-    // for (int i = 0; i < 8; i++) {
-    //   if (contextList[i] == currentContext) {
-    //     intentionFactorSetIndexForSystemInitiated = i;
-    //     print('check');
-    //   }
-    // }
 
-    // Provider.of<Login>(context, listen: false)
-    //     .getCurrentContext(currentContext);
     print('aa $weather');
   }
 

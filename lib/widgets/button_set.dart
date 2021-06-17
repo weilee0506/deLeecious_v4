@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:weather/weather.dart';
 import 'package:intl/intl.dart';
 
 import '../screens/recommendation_screen.dart';
@@ -15,40 +14,27 @@ class ButtonSet extends StatefulWidget {
 }
 
 class _ButtonSetState extends State<ButtonSet> {
-  // bool loadInitiatedFactorStatus = false;
-  // List<dynamic> intentionFactorSetForCancel;
   final saveInputController = TextEditingController();
 
-  // WeatherFactory wf = new WeatherFactory('58dbf39967ed6036991d250caabcf477',
-  //     language: Language.CHINESE_TRADITIONAL);
   String cityName = 'Taipei';
   String weatherGoodBad;
   String dayNight;
   String weekdayWeekend;
   String currentContext;
 
+  List intentionFactorStatusListBeforeEdit;
+  List intentionFactorStatusListAfterEdit;
+
   @override
   initState() {
+    intentionFactorStatusListAfterEdit = [];
+    intentionFactorStatusListBeforeEdit = [];
     super.initState();
   }
 
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
-
-    // if (loadInitiatedFactorStatus == false) {
-    // intentionFactorSetForCancel = List.from(
-    //     Provider.of<Login>(context, listen: false)
-    //         .userData['userIntentionFactorSets']);
-    // intentionFactorSetForEdit = List.from(
-    //     Provider.of<Login>(context, listen: false)
-    //         .userData['userIntentionFactorSets']);
-    // print('$intentionFactorSetForCancel  for cancel');
-    // print('$intentionFactorSetForEdit  for edit');
-    //   intentionFactorSetForCancel = Provider.of<Login>(context, listen: false)
-    //       .userData['userIntentionFactorSets'];
-    //   loadInitiatedFactorStatus = true;
-    // }
   }
 
   Widget buildTextButton(BuildContext context, String label, Function onpress) {
@@ -106,8 +92,6 @@ class _ButtonSetState extends State<ButtonSet> {
         ])
       });
       Navigator.of(context).pushNamed(RecommendationScreen.routeName);
-      // print((Provider.of<Login>(context, listen: false)
-      //     .userData['userIntentionFactorSets']));
     } else {
       showDialog(
           context: context,
@@ -135,6 +119,12 @@ class _ButtonSetState extends State<ButtonSet> {
           .setIntentionFactorSetBeforeEdit(
               Provider.of<Login>(context, listen: false)
                   .selectedIntentionFactorSet);
+      for (int i = 0; i < 5; i++) {
+        intentionFactorStatusListBeforeEdit.add(
+            Provider.of<Login>(context, listen: false)
+                    .intentionFactorSetBeforeEdit[0]['intentionFactors'][i]
+                ['intentionFactorStatus']);
+      }
       showDialog(
         context: context,
         builder: (context) {
@@ -142,8 +132,6 @@ class _ButtonSetState extends State<ButtonSet> {
             builder: (context, StateSetter setState) {
               return Consumer<Login>(
                 builder: (context, login, child) {
-                  // print('$intentionFactorSetForCancel aaa');
-                  // print('${login.userData['userIntentionFactorSets']}  bbb');
                   return AlertDialog(
                     title: Text(
                       '編輯',
@@ -274,33 +262,28 @@ class _ButtonSetState extends State<ButtonSet> {
     }
   }
 
-  // void cancelEdit(BuildContext context) {
-  //   Navigator.of(context).pop();
-  // }
-
   void confirmEdit(BuildContext context) {
     Provider.of<Login>(context, listen: false).setIntentionFactorSetAfterEdit(
         Provider.of<Login>(context, listen: false).selectedIntentionFactorSet);
+    for (int i = 0; i < 5; i++) {
+      intentionFactorStatusListAfterEdit.add(
+          Provider.of<Login>(context, listen: false)
+                  .intentionFactorSetAfterEdit[0]['intentionFactors'][i]
+              ['intentionFactorStatus']);
+    }
+    print('before $intentionFactorStatusListBeforeEdit');
+    print('after $intentionFactorStatusListAfterEdit');
     Provider.of<Login>(context, listen: false).edit();
 
     int editIndexCount = 0;
-    for (int i = 0;
-        i <
-            Provider.of<Login>(context, listen: false)
-                .selectedIntentionFactorSet[0]['intentionFactors']
-                .length;
-        i++) {
-      if (Provider.of<Login>(context, listen: false)
-                  .intentionFactorSetBeforeEdit[0]['intentionFactors'][i]
-              ['intentionFactorStatus'] ==
-          Provider.of<Login>(context, listen: false)
-                  .intentionFactorSetAfterEdit[0]['intentionFactors'][i]
-              ['intentionFactorStatus']) {
+    for (int i = 0; i < intentionFactorStatusListAfterEdit.length; i++) {
+      if (intentionFactorStatusListBeforeEdit[i] !=
+          intentionFactorStatusListAfterEdit[i]) {
         editIndexCount += 1;
         print(editIndexCount);
       }
     }
-    print(editIndexCount);
+    print('editIndexCount $editIndexCount');
     CollectionReference usersEvent =
         FirebaseFirestore.instance.collection('usersEvent');
     usersEvent.doc('zqX5VRLQnFaAWkRLGt5Q').update({
@@ -533,33 +516,6 @@ class _ButtonSetState extends State<ButtonSet> {
   }
 
   Future getContext() async {
-    // Weather w = await wf.currentWeatherByCityName(cityName);
-    // final weather = w.weatherMain;
-    // if (weather == 'Thunderstorm' ||
-    //     weather == 'Drizzle' ||
-    //     weather == 'Rain') {
-    //   weatherGoodBad = 'bad';
-    // } else {
-    //   weatherGoodBad = 'good';
-    // }
-
-    // final day = DateFormat.E().format(DateTime.now());
-    // if (day == 'Sat' || day == 'Sun') {
-    //   weekdayWeekend = 'weekend';
-    // } else {
-    //   weekdayWeekend = 'weekday';
-    // }
-
-    // final time = DateFormat.H().format(DateTime.now());
-    // if (int.parse(time) < 18) {
-    //   dayNight = 'day';
-    // } else {
-    //   dayNight = 'night';
-    // }
-    // currentContext = '$weatherGoodBad$weekdayWeekend$dayNight';
-    // print(weather);
-    // print(weekdayWeekend);
-    // print(dayNight);
     currentContext = Provider.of<Login>(context, listen: false).currentContext;
   }
 
@@ -568,12 +524,7 @@ class _ButtonSetState extends State<ButtonSet> {
     if (saveInputController.text.isNotEmpty) {
       final prefs = await SharedPreferences.getInstance();
       var path = prefs.getString('userEmail');
-      // Provider.of<Login>(context, listen: false)
-      //     .userData['userIntentionFactorSets']
-      //     .last['userIntentionFactorSetName'] = saveInputController.text;
-      // Provider.of<Login>(context, listen: false)
-      //     .userData['userIntentionFactorSets']
-      //     .last['userIntentionFactorSetContext'] = currentContext;
+
       if (Provider.of<Login>(context, listen: false)
           .fitContextIntentionFactorSetsName
           .contains(saveInputController.text)) {
@@ -587,17 +538,12 @@ class _ButtonSetState extends State<ButtonSet> {
           ['userIntentionFactorSetName'] = saveInputController.text;
       Provider.of<Login>(context, listen: false).selectedIntentionFactorSet[0]
           ['userIntentionFactorSetContext'] = currentContext;
-      // Provider.of<Login>(context, listen: false).selectedIntentionFactorSetName =
-      //     saveInputController.text;
 
       CollectionReference users =
           FirebaseFirestore.instance.collection('users');
 
       users.doc(path).update({
         'userIntentionFactorSets': FieldValue.arrayUnion([
-          // Provider.of<Login>(context, listen: false)
-          //     .userData['userIntentionFactorSets']
-          //     .last
           Provider.of<Login>(context, listen: false)
               .selectedIntentionFactorSet[0]
         ])

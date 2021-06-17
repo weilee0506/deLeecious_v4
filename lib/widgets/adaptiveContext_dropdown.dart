@@ -40,17 +40,6 @@ class _AdaptiveContextDropdownState extends State<AdaptiveContextDropdown> {
 
   @override
   void initState() {
-    // fitContextIntentionFactorSets = [];
-    // fitContextIntentionFactorSetsName = [];
-    // get_context();
-    // if (Provider.of<Login>(context, listen: false).userData['userGroup'] ==
-    //         'user-initiated' ||
-    //     Provider.of<Login>(context, listen: false).userData['userGroup'] ==
-    //         'mix-initiated' ||
-    //     Provider.of<Login>(context, listen: false).userData['userGroup'] ==
-    //         'no-personalization') {
-    //   get_context();
-    // }
     super.initState();
     Geolocator.getCurrentPosition().then((currloc) {
       _currentLocation = currloc;
@@ -84,12 +73,6 @@ class _AdaptiveContextDropdownState extends State<AdaptiveContextDropdown> {
       dayNight = '晚上';
     }
     currentContext = '$weatherGoodBad$weekdayWeekend$dayNight';
-    // for (int i = 0; i < 8; i++) {
-    //   if (contextList[i] == currentContext) {
-    //     intentionFactorSetIndexForSystemInitiated = i;
-    //     print('check');
-    //   }
-    // }
 
     Provider.of<Login>(context, listen: false)
         .getCurrentContext(currentContext);
@@ -97,9 +80,6 @@ class _AdaptiveContextDropdownState extends State<AdaptiveContextDropdown> {
   }
 
   Future getContext() async {
-    // Geolocator.getCurrentPosition().then((currloc) {
-    //   _currentLocation = currloc;
-    // });
     //mix-initiated
     if (Provider.of<Login>(context, listen: false).userData['userGroup'] ==
         'mix-initiated') {
@@ -126,25 +106,6 @@ class _AdaptiveContextDropdownState extends State<AdaptiveContextDropdown> {
                       ['userIntentionFactorSetName']);
         }
       }
-
-      // Geolocator.getCurrentPosition(
-      //         desiredAccuracy: LocationAccuracy.best,
-      //         forceAndroidLocationManager: true)
-      //     .then((Position position) {
-      //   if (mounted) {
-      //     setState(() {
-      //       _currentLocation = position;
-      //       Provider.of<Login>(context, listen: false)
-      //           .getCurrentLocation(_currentLocation);
-      //       Provider.of<Login>(context, listen: false)
-      //           .getCurrentLatitude(_currentLocation.latitude);
-      //       Provider.of<Login>(context, listen: false)
-      //           .getCurrentLongitude(_currentLocation.longitude);
-      //     });
-      //   }
-      // }).catchError((e) {
-      //   print(e);
-      // });
     }
 
     //user-initiated
@@ -167,24 +128,6 @@ class _AdaptiveContextDropdownState extends State<AdaptiveContextDropdown> {
                         .userData['userIntentionFactorSets'][i]
                     ['userIntentionFactorSetName']);
       }
-      // Geolocator.getCurrentPosition(
-      //         desiredAccuracy: LocationAccuracy.best,
-      //         forceAndroidLocationManager: true)
-      //     .then((Position position) {
-      //   if (mounted) {
-      //     setState(() {
-      //       _currentLocation = position;
-      //       Provider.of<Login>(context, listen: false)
-      //           .getCurrentLocation(_currentLocation);
-      //       Provider.of<Login>(context, listen: false)
-      //           .getCurrentLatitude(_currentLocation.latitude);
-      //       Provider.of<Login>(context, listen: false)
-      //           .getCurrentLongitude(_currentLocation.longitude);
-      //     });
-      //   }
-      // }).catchError((e) {
-      //   print(e);
-      // });
     }
 
     //no-personalization
@@ -195,158 +138,12 @@ class _AdaptiveContextDropdownState extends State<AdaptiveContextDropdown> {
       Provider.of<Login>(context, listen: false).getFitIntentionFactorSets(
           Provider.of<Login>(context, listen: false)
               .userData['userIntentionFactorSets'][0]);
-
-      // Geolocator.getCurrentPosition(
-      //         desiredAccuracy: LocationAccuracy.best,
-      //         forceAndroidLocationManager: true)
-      //     .then((Position position) {
-      //   // if (mounted) {
-      //   //   setState(() {
-      //   _currentLocation = position;
-      //   Provider.of<Login>(context, listen: false)
-      //       .getCurrentLocation(_currentLocation);
-      //   Provider.of<Login>(context, listen: false)
-      //       .getCurrentLatitude(_currentLocation.latitude);
-      //   Provider.of<Login>(context, listen: false)
-      //       .getCurrentLongitude(_currentLocation.longitude);
-      //   //   });
-      //   // }
-      // }).catchError((e) {
-      //   print(e);
-      // });
     }
 
     //system-initiated
     if (Provider.of<Login>(context, listen: false).userData['userGroup'] ==
         'system-initiated') {
       Provider.of<Login>(context, listen: false).resetFitContextSets();
-
-      // if (Provider.of<Login>(context, listen: false)
-      //             .userData['userIntentionFactorSets'][0]
-      //         ['userIntentionFactorSetContext'] ==
-      //     Provider.of<Login>(context, listen: false).currentContext) {
-      //   Provider.of<Login>(context, listen: false).getFitIntentionFactorSets(
-      //       Provider.of<Login>(context, listen: false)
-      //           .userData['userIntentionFactorSets'][0]);
-      //   Provider.of<Login>(context, listen: false)
-      //       .getSelectedIntentionFactorSet();
-      // }
-      // if (Provider.of<Login>(context, listen: false)
-      //             .userData['userIntentionFactorSets'][1]
-      //         ['userIntentionFactorSetContext'] ==
-      //     Provider.of<Login>(context, listen: false).currentContext) {
-      //   Provider.of<Login>(context, listen: false).getFitIntentionFactorSets(
-      //       Provider.of<Login>(context, listen: false)
-      //           .userData['userIntentionFactorSets'][1]);
-      //   Provider.of<Login>(context, listen: false)
-      //       .getSelectedIntentionFactorSet();
-      // }
-      // if (Provider.of<Login>(context, listen: false)
-      //             .userData['userIntentionFactorSets'][2]
-      //         ['userIntentionFactorSetContext'] ==
-      //     Provider.of<Login>(context, listen: false).currentContext) {
-      //   Provider.of<Login>(context, listen: false).getFitIntentionFactorSets(
-      //       Provider.of<Login>(context, listen: false)
-      //           .userData['userIntentionFactorSets'][2]);
-      //   Provider.of<Login>(context, listen: false)
-      //       .getSelectedIntentionFactorSet();
-      // }
-      // if (Provider.of<Login>(context, listen: false)
-      //             .userData['userIntentionFactorSets'][3]
-      //         ['userIntentionFactorSetContext'] ==
-      //     Provider.of<Login>(context, listen: false).currentContext) {
-      //   Provider.of<Login>(context, listen: false).getFitIntentionFactorSets(
-      //       Provider.of<Login>(context, listen: false)
-      //           .userData['userIntentionFactorSets'][3]);
-      //   Provider.of<Login>(context, listen: false)
-      //       .getSelectedIntentionFactorSet();
-      // }
-      // if (Provider.of<Login>(context, listen: false)
-      //             .userData['userIntentionFactorSets'][4]
-      //         ['userIntentionFactorSetContext'] ==
-      //     Provider.of<Login>(context, listen: false).currentContext) {
-      //   Provider.of<Login>(context, listen: false).getFitIntentionFactorSets(
-      //       Provider.of<Login>(context, listen: false)
-      //           .userData['userIntentionFactorSets'][4]);
-      //   Provider.of<Login>(context, listen: false)
-      //       .getSelectedIntentionFactorSet();
-      // }
-      // if (Provider.of<Login>(context, listen: false)
-      //             .userData['userIntentionFactorSets'][5]
-      //         ['userIntentionFactorSetContext'] ==
-      //     Provider.of<Login>(context, listen: false).currentContext) {
-      //   Provider.of<Login>(context, listen: false).getFitIntentionFactorSets(
-      //       Provider.of<Login>(context, listen: false)
-      //           .userData['userIntentionFactorSets'][5]);
-      //   Provider.of<Login>(context, listen: false)
-      //       .getSelectedIntentionFactorSet();
-      // }
-      // if (Provider.of<Login>(context, listen: false)
-      //             .userData['userIntentionFactorSets'][6]
-      //         ['userIntentionFactorSetContext'] ==
-      //     Provider.of<Login>(context, listen: false).currentContext) {
-      //   Provider.of<Login>(context, listen: false).getFitIntentionFactorSets(
-      //       Provider.of<Login>(context, listen: false)
-      //           .userData['userIntentionFactorSets'][6]);
-      //   Provider.of<Login>(context, listen: false)
-      //       .getSelectedIntentionFactorSet();
-      // }
-      // if (Provider.of<Login>(context, listen: false)
-      //             .userData['userIntentionFactorSets'][7]
-      //         ['userIntentionFactorSetContext'] ==
-      //     Provider.of<Login>(context, listen: false).currentContext) {
-      //   Provider.of<Login>(context, listen: false).getFitIntentionFactorSets(
-      //       Provider.of<Login>(context, listen: false)
-      //           .userData['userIntentionFactorSets'][7]);
-      //   Provider.of<Login>(context, listen: false)
-      //       .getSelectedIntentionFactorSet();
-      // }
-      // Provider.of<Login>(context, listen: false).getFitIntentionFactorSets(
-      //     Provider.of<Login>(context, listen: false)
-      //         .userData['userIntentionFactorSets'][0]);
-
-      // for (var i = 0;
-      //     i <
-      //         Provider.of<Login>(context, listen: false)
-      //             .userData['userIntentionFactorSets']
-      //             .length;
-      //     i++) {
-      //   if (Provider.of<Login>(context, listen: false)
-      //               .userData['userIntentionFactorSets'][i]
-      //           ['userIntentionFactorSetContext'] ==
-      //       Provider.of<Login>(context, listen: false).currentContext) {
-      //     Provider.of<Login>(context, listen: false).getFitIntentionFactorSets(
-      //         Provider.of<Login>(context, listen: false)
-      //             .userData['userIntentionFactorSets'][i]);
-      // Provider.of<Login>(context, listen: false)
-      //     .getSelectedIntentionFactorSet();
-      // Provider.of<Login>(context, listen: false)
-      //     .getSelectedIntentionFactorSetName(
-      //         Provider.of<Login>(context, listen: false)
-      //                 .userData['userIntentionFactorSets'][i]
-      //             ['userIntentionFactorSetName']);
-      // Provider.of<Login>(context, listen: false).changecheck();
-      //   }
-      // }
-
-      // Geolocator.getCurrentPosition(
-      //         desiredAccuracy: LocationAccuracy.best,
-      //         forceAndroidLocationManager: true)
-      //     .then((Position position) {
-      //   if (mounted) {
-      //     setState(() {
-      //       _currentLocation = position;
-      //       Provider.of<Login>(context, listen: false)
-      //           .getCurrentLocation(_currentLocation);
-      //       Provider.of<Login>(context, listen: false)
-      //           .getCurrentLatitude(_currentLocation.latitude);
-      //       Provider.of<Login>(context, listen: false)
-      //           .getCurrentLongitude(_currentLocation.longitude);
-      //     });
-      //   }
-      // }).catchError((e) {
-      //   print(e);
-      // });
     }
   }
 
@@ -367,18 +164,10 @@ class _AdaptiveContextDropdownState extends State<AdaptiveContextDropdown> {
                     color: Colors.white,
                     fontSize: 25,
                     fontFamily: 'RobotoCondensed',
-                    // backgroundColor: Colors.pink,
                   ),
                 ),
-                // padding: EdgeInsets.all(5),
                 color: Colors.pink,
               ),
-              // Container(
-              //   child: Text('$_currentLocation'),
-              // ),
-              // SizedBox(
-              //   width: 30,
-              // ),
               if (Provider.of<Login>(context, listen: false)
                           .userData['userGroup'] ==
                       'mix-initiated' ||
