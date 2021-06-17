@@ -65,23 +65,23 @@ class _AdaptiveContextDropdownState extends State<AdaptiveContextDropdown> {
     if (weather == 'Thunderstorm' ||
         weather == 'Drizzle' ||
         weather == 'Rain') {
-      weatherGoodBad = 'bad';
+      weatherGoodBad = '壞天氣';
     } else {
-      weatherGoodBad = 'good';
+      weatherGoodBad = '好天氣';
     }
 
     final day = DateFormat.E().format(DateTime.now());
     if (day == 'Sat' || day == 'Sun') {
-      weekdayWeekend = 'weekend';
+      weekdayWeekend = '假日';
     } else {
-      weekdayWeekend = 'weekday';
+      weekdayWeekend = '平日';
     }
 
     final time = DateFormat.H().format(DateTime.now());
     if (int.parse(time) < 18) {
-      dayNight = 'day';
+      dayNight = '白天';
     } else {
-      dayNight = 'night';
+      dayNight = '晚上';
     }
     currentContext = '$weatherGoodBad$weekdayWeekend$dayNight';
     // for (int i = 0; i < 8; i++) {
@@ -97,9 +97,9 @@ class _AdaptiveContextDropdownState extends State<AdaptiveContextDropdown> {
   }
 
   Future getContext() async {
-    Geolocator.getCurrentPosition().then((currloc) {
-      _currentLocation = currloc;
-    });
+    // Geolocator.getCurrentPosition().then((currloc) {
+    //   _currentLocation = currloc;
+    // });
     //mix-initiated
     if (Provider.of<Login>(context, listen: false).userData['userGroup'] ==
         'mix-initiated') {
@@ -360,19 +360,19 @@ class _AdaptiveContextDropdownState extends State<AdaptiveContextDropdown> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-              if (Provider.of<Login>(context, listen: false)
-                          .userData['userGroup'] ==
-                      'mix-initiated' ||
-                  Provider.of<Login>(context, listen: false)
-                          .userData['userGroup'] ==
-                      'system-initiated')
-                Container(
-                  child: Text(
-                    'context: ${Provider.of<Login>(context, listen: false).currentContext}',
-                    style: Theme.of(context).textTheme.bodyText1,
+              ColoredBox(
+                child: Text(
+                  '現在情境: ${Provider.of<Login>(context, listen: false).currentContext}',
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 25,
+                    fontFamily: 'RobotoCondensed',
+                    // backgroundColor: Colors.pink,
                   ),
-                  padding: EdgeInsets.all(5),
                 ),
+                // padding: EdgeInsets.all(5),
+                color: Colors.pink,
+              ),
               // Container(
               //   child: Text('$_currentLocation'),
               // ),

@@ -523,11 +523,21 @@ class _RecommendationScreenState extends State<RecommendationScreen> {
 
     CollectionReference usersEvent =
         FirebaseFirestore.instance.collection('usersEvent');
-    usersEvent.doc('6Kme8kTW8NvQwWYw5uVT').update({
+    usersEvent.doc('zqX5VRLQnFaAWkRLGt5Q').update({
       'usersEventRecord': FieldValue.arrayUnion([
         {
           'user':
               Provider.of<Login>(context, listen: false).userData['userEmail'],
+          'eventType': 'selectRestaurant',
+          'timeStamp': DateFormat.yMd().add_Hms().format(DateTime.now()),
+        }
+      ])
+    });
+    usersEvent
+        .doc(Provider.of<Login>(context, listen: false).userData['userEmail'])
+        .update({
+      'usersEventRecord': FieldValue.arrayUnion([
+        {
           'eventType': 'selectRestaurant',
           'timeStamp': DateFormat.yMd().add_Hms().format(DateTime.now()),
         }
@@ -556,11 +566,28 @@ class _RecommendationScreenState extends State<RecommendationScreen> {
         int.parse(DateFormat.s().format(DateTime.now()));
     int executeSeconds = endSeconds - startSeconds;
 
-    usersEvent.doc('6Kme8kTW8NvQwWYw5uVT').update({
+    usersEvent.doc('zqX5VRLQnFaAWkRLGt5Q').update({
       'usersEventRecord': FieldValue.arrayUnion([
         {
           'user':
               Provider.of<Login>(context, listen: false).userData['userEmail'],
+          'eventType': 'finishOneRecommendation',
+          'startTime': Provider.of<Login>(context, listen: false).startTime,
+          'endTime': [
+            DateFormat.H().format(DateTime.now()),
+            DateFormat.m().format(DateTime.now()),
+            DateFormat.s().format(DateTime.now())
+          ],
+          'executeTime': executeSeconds,
+          'timeStamp': DateFormat.yMd().add_Hms().format(DateTime.now()),
+        }
+      ])
+    });
+    usersEvent
+        .doc(Provider.of<Login>(context, listen: false).userData['userEmail'])
+        .update({
+      'usersEventRecord': FieldValue.arrayUnion([
+        {
           'eventType': 'finishOneRecommendation',
           'startTime': Provider.of<Login>(context, listen: false).startTime,
           'endTime': [

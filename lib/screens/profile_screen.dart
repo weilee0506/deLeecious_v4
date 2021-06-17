@@ -17444,12 +17444,12 @@ class _ProfileScreenState extends State<ProfileScreen> {
       ],
       'userIntentionFactorSets': [
         {
-          'userIntentionFactorSetContext': 'goodweekdayday',
+          'userIntentionFactorSetContext': '好天氣平日白天',
           'userIntentionFactorSetName': 'set1',
           'intentionFactors': [
             {
               'intentionFactorName': '服務',
-              'intentionFactorStatus': true,
+              'intentionFactorStatus': false,
               'intentionFactorSelectedOption': '不考慮',
             },
             {
@@ -17469,18 +17469,18 @@ class _ProfileScreenState extends State<ProfileScreen> {
             },
             {
               'intentionFactorName': '評分',
-              'intentionFactorStatus': true,
+              'intentionFactorStatus': false,
               'intentionFactorSelectedOption': '不考慮',
             },
           ]
         },
         {
-          'userIntentionFactorSetContext': 'goodweekdaynight',
+          'userIntentionFactorSetContext': '好天氣平日晚上',
           'userIntentionFactorSetName': 'set2',
           'intentionFactors': [
             {
               'intentionFactorName': '服務',
-              'intentionFactorStatus': true,
+              'intentionFactorStatus': false,
               'intentionFactorSelectedOption': '不考慮',
             },
             {
@@ -17500,33 +17500,33 @@ class _ProfileScreenState extends State<ProfileScreen> {
             },
             {
               'intentionFactorName': '評分',
-              'intentionFactorStatus': true,
+              'intentionFactorStatus': false,
               'intentionFactorSelectedOption': '不考慮',
             },
           ]
         },
         {
-          'userIntentionFactorSetContext': 'goodweekendday',
+          'userIntentionFactorSetContext': '好天氣假日白天',
           'userIntentionFactorSetName': 'set3',
           'intentionFactors': [
             {
               'intentionFactorName': '服務',
-              'intentionFactorStatus': true,
+              'intentionFactorStatus': false,
               'intentionFactorSelectedOption': '不考慮',
             },
             {
               'intentionFactorName': '均消',
-              'intentionFactorStatus': true,
+              'intentionFactorStatus': false,
               'intentionFactorSelectedOption': '不考慮',
             },
             {
               'intentionFactorName': '時間',
-              'intentionFactorStatus': true,
+              'intentionFactorStatus': false,
               'intentionFactorSelectedOption': '不考慮',
             },
             {
               'intentionFactorName': '距離',
-              'intentionFactorStatus': true,
+              'intentionFactorStatus': false,
               'intentionFactorSelectedOption': '不考慮',
             },
             {
@@ -17537,27 +17537,27 @@ class _ProfileScreenState extends State<ProfileScreen> {
           ]
         },
         {
-          'userIntentionFactorSetContext': 'goodweekendnight',
+          'userIntentionFactorSetContext': '好天氣假日晚上',
           'userIntentionFactorSetName': 'set4',
           'intentionFactors': [
             {
               'intentionFactorName': '服務',
-              'intentionFactorStatus': true,
+              'intentionFactorStatus': false,
               'intentionFactorSelectedOption': '不考慮',
             },
             {
               'intentionFactorName': '均消',
-              'intentionFactorStatus': true,
+              'intentionFactorStatus': false,
               'intentionFactorSelectedOption': '不考慮',
             },
             {
               'intentionFactorName': '時間',
-              'intentionFactorStatus': true,
+              'intentionFactorStatus': false,
               'intentionFactorSelectedOption': '不考慮',
             },
             {
               'intentionFactorName': '距離',
-              'intentionFactorStatus': true,
+              'intentionFactorStatus': false,
               'intentionFactorSelectedOption': '不考慮',
             },
             {
@@ -17568,7 +17568,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
           ]
         },
         {
-          'userIntentionFactorSetContext': 'badweekdayday',
+          'userIntentionFactorSetContext': '壞天氣平日白天',
           'userIntentionFactorSetName': 'set5',
           'intentionFactors': [
             {
@@ -17593,13 +17593,13 @@ class _ProfileScreenState extends State<ProfileScreen> {
             },
             {
               'intentionFactorName': '評分',
-              'intentionFactorStatus': true,
+              'intentionFactorStatus': false,
               'intentionFactorSelectedOption': '不考慮',
             },
           ]
         },
         {
-          'userIntentionFactorSetContext': 'badweekdaynight',
+          'userIntentionFactorSetContext': '壞天氣平日晚上',
           'userIntentionFactorSetName': 'set6',
           'intentionFactors': [
             {
@@ -17624,13 +17624,13 @@ class _ProfileScreenState extends State<ProfileScreen> {
             },
             {
               'intentionFactorName': '評分',
-              'intentionFactorStatus': true,
+              'intentionFactorStatus': false,
               'intentionFactorSelectedOption': '不考慮',
             },
           ]
         },
         {
-          'userIntentionFactorSetContext': 'badweekendday',
+          'userIntentionFactorSetContext': '壞天氣假日白天',
           'userIntentionFactorSetName': 'set7',
           'intentionFactors': [
             {
@@ -17640,17 +17640,17 @@ class _ProfileScreenState extends State<ProfileScreen> {
             },
             {
               'intentionFactorName': '均消',
-              'intentionFactorStatus': true,
+              'intentionFactorStatus': false,
               'intentionFactorSelectedOption': '不考慮',
             },
             {
               'intentionFactorName': '時間',
-              'intentionFactorStatus': true,
+              'intentionFactorStatus': false,
               'intentionFactorSelectedOption': '不考慮',
             },
             {
               'intentionFactorName': '距離',
-              'intentionFactorStatus': true,
+              'intentionFactorStatus': false,
               'intentionFactorSelectedOption': '不考慮',
             },
             {
@@ -17661,7 +17661,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
           ]
         },
         {
-          'userIntentionFactorSetContext': 'badweekendnight',
+          'userIntentionFactorSetContext': '壞天氣假日晚上',
           'userIntentionFactorSetName': 'set8',
           'intentionFactors': [
             {
@@ -17671,17 +17671,17 @@ class _ProfileScreenState extends State<ProfileScreen> {
             },
             {
               'intentionFactorName': '均消',
-              'intentionFactorStatus': true,
+              'intentionFactorStatus': false,
               'intentionFactorSelectedOption': '不考慮',
             },
             {
               'intentionFactorName': '時間',
-              'intentionFactorStatus': true,
+              'intentionFactorStatus': false,
               'intentionFactorSelectedOption': '不考慮',
             },
             {
               'intentionFactorName': '距離',
-              'intentionFactorStatus': true,
+              'intentionFactorStatus': false,
               'intentionFactorSelectedOption': '不考慮',
             },
             {
@@ -17722,12 +17722,12 @@ class _ProfileScreenState extends State<ProfileScreen> {
       ],
       'userIntentionFactorSets': [
         {
-          'userIntentionFactorSetContext': 'goodweekdayday',
+          'userIntentionFactorSetContext': '好天氣平日白天',
           'userIntentionFactorSetName': 'set1',
           'intentionFactors': [
             {
               'intentionFactorName': '服務',
-              'intentionFactorStatus': true,
+              'intentionFactorStatus': false,
               'intentionFactorSelectedOption': '不考慮',
             },
             {
@@ -17747,18 +17747,18 @@ class _ProfileScreenState extends State<ProfileScreen> {
             },
             {
               'intentionFactorName': '評分',
-              'intentionFactorStatus': true,
+              'intentionFactorStatus': false,
               'intentionFactorSelectedOption': '不考慮',
             },
           ]
         },
         {
-          'userIntentionFactorSetContext': 'goodweekdaynight',
+          'userIntentionFactorSetContext': '好天氣平日晚上',
           'userIntentionFactorSetName': 'set2',
           'intentionFactors': [
             {
               'intentionFactorName': '服務',
-              'intentionFactorStatus': true,
+              'intentionFactorStatus': false,
               'intentionFactorSelectedOption': '不考慮',
             },
             {
@@ -17778,33 +17778,33 @@ class _ProfileScreenState extends State<ProfileScreen> {
             },
             {
               'intentionFactorName': '評分',
-              'intentionFactorStatus': true,
+              'intentionFactorStatus': false,
               'intentionFactorSelectedOption': '不考慮',
             },
           ]
         },
         {
-          'userIntentionFactorSetContext': 'goodweekendday',
+          'userIntentionFactorSetContext': '好天氣假日白天',
           'userIntentionFactorSetName': 'set3',
           'intentionFactors': [
             {
               'intentionFactorName': '服務',
-              'intentionFactorStatus': true,
+              'intentionFactorStatus': false,
               'intentionFactorSelectedOption': '不考慮',
             },
             {
               'intentionFactorName': '均消',
-              'intentionFactorStatus': true,
+              'intentionFactorStatus': false,
               'intentionFactorSelectedOption': '不考慮',
             },
             {
               'intentionFactorName': '時間',
-              'intentionFactorStatus': true,
+              'intentionFactorStatus': false,
               'intentionFactorSelectedOption': '不考慮',
             },
             {
               'intentionFactorName': '距離',
-              'intentionFactorStatus': true,
+              'intentionFactorStatus': false,
               'intentionFactorSelectedOption': '不考慮',
             },
             {
@@ -17815,27 +17815,27 @@ class _ProfileScreenState extends State<ProfileScreen> {
           ]
         },
         {
-          'userIntentionFactorSetContext': 'goodweekendnight',
+          'userIntentionFactorSetContext': '好天氣假日晚上',
           'userIntentionFactorSetName': 'set4',
           'intentionFactors': [
             {
               'intentionFactorName': '服務',
-              'intentionFactorStatus': true,
+              'intentionFactorStatus': false,
               'intentionFactorSelectedOption': '不考慮',
             },
             {
               'intentionFactorName': '均消',
-              'intentionFactorStatus': true,
+              'intentionFactorStatus': false,
               'intentionFactorSelectedOption': '不考慮',
             },
             {
               'intentionFactorName': '時間',
-              'intentionFactorStatus': true,
+              'intentionFactorStatus': false,
               'intentionFactorSelectedOption': '不考慮',
             },
             {
               'intentionFactorName': '距離',
-              'intentionFactorStatus': true,
+              'intentionFactorStatus': false,
               'intentionFactorSelectedOption': '不考慮',
             },
             {
@@ -17846,7 +17846,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
           ]
         },
         {
-          'userIntentionFactorSetContext': 'badweekdayday',
+          'userIntentionFactorSetContext': '壞天氣平日白天',
           'userIntentionFactorSetName': 'set5',
           'intentionFactors': [
             {
@@ -17871,13 +17871,13 @@ class _ProfileScreenState extends State<ProfileScreen> {
             },
             {
               'intentionFactorName': '評分',
-              'intentionFactorStatus': true,
+              'intentionFactorStatus': false,
               'intentionFactorSelectedOption': '不考慮',
             },
           ]
         },
         {
-          'userIntentionFactorSetContext': 'badweekdaynight',
+          'userIntentionFactorSetContext': '壞天氣平日晚上',
           'userIntentionFactorSetName': 'set6',
           'intentionFactors': [
             {
@@ -17902,13 +17902,13 @@ class _ProfileScreenState extends State<ProfileScreen> {
             },
             {
               'intentionFactorName': '評分',
-              'intentionFactorStatus': true,
+              'intentionFactorStatus': false,
               'intentionFactorSelectedOption': '不考慮',
             },
           ]
         },
         {
-          'userIntentionFactorSetContext': 'badweekendday',
+          'userIntentionFactorSetContext': '壞天氣假日白天',
           'userIntentionFactorSetName': 'set7',
           'intentionFactors': [
             {
@@ -17918,17 +17918,17 @@ class _ProfileScreenState extends State<ProfileScreen> {
             },
             {
               'intentionFactorName': '均消',
-              'intentionFactorStatus': true,
+              'intentionFactorStatus': false,
               'intentionFactorSelectedOption': '不考慮',
             },
             {
               'intentionFactorName': '時間',
-              'intentionFactorStatus': true,
+              'intentionFactorStatus': false,
               'intentionFactorSelectedOption': '不考慮',
             },
             {
               'intentionFactorName': '距離',
-              'intentionFactorStatus': true,
+              'intentionFactorStatus': false,
               'intentionFactorSelectedOption': '不考慮',
             },
             {
@@ -17939,7 +17939,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
           ]
         },
         {
-          'userIntentionFactorSetContext': 'badweekendnight',
+          'userIntentionFactorSetContext': '壞天氣假日晚上',
           'userIntentionFactorSetName': 'set8',
           'intentionFactors': [
             {
@@ -17949,17 +17949,17 @@ class _ProfileScreenState extends State<ProfileScreen> {
             },
             {
               'intentionFactorName': '均消',
-              'intentionFactorStatus': true,
+              'intentionFactorStatus': false,
               'intentionFactorSelectedOption': '不考慮',
             },
             {
               'intentionFactorName': '時間',
-              'intentionFactorStatus': true,
+              'intentionFactorStatus': false,
               'intentionFactorSelectedOption': '不考慮',
             },
             {
               'intentionFactorName': '距離',
-              'intentionFactorStatus': true,
+              'intentionFactorStatus': false,
               'intentionFactorSelectedOption': '不考慮',
             },
             {
@@ -18000,12 +18000,12 @@ class _ProfileScreenState extends State<ProfileScreen> {
       ],
       'userIntentionFactorSets': [
         {
-          'userIntentionFactorSetContext': 'goodweekdayday',
+          'userIntentionFactorSetContext': '好天氣平日白天',
           'userIntentionFactorSetName': 'set1',
           'intentionFactors': [
             {
               'intentionFactorName': '服務',
-              'intentionFactorStatus': true,
+              'intentionFactorStatus': false,
               'intentionFactorSelectedOption': '不考慮',
             },
             {
@@ -18025,18 +18025,18 @@ class _ProfileScreenState extends State<ProfileScreen> {
             },
             {
               'intentionFactorName': '評分',
-              'intentionFactorStatus': true,
+              'intentionFactorStatus': false,
               'intentionFactorSelectedOption': '不考慮',
             },
           ]
         },
         {
-          'userIntentionFactorSetContext': 'goodweekdaynight',
+          'userIntentionFactorSetContext': '好天氣平日晚上',
           'userIntentionFactorSetName': 'set2',
           'intentionFactors': [
             {
               'intentionFactorName': '服務',
-              'intentionFactorStatus': true,
+              'intentionFactorStatus': false,
               'intentionFactorSelectedOption': '不考慮',
             },
             {
@@ -18056,33 +18056,33 @@ class _ProfileScreenState extends State<ProfileScreen> {
             },
             {
               'intentionFactorName': '評分',
-              'intentionFactorStatus': true,
+              'intentionFactorStatus': false,
               'intentionFactorSelectedOption': '不考慮',
             },
           ]
         },
         {
-          'userIntentionFactorSetContext': 'goodweekendday',
+          'userIntentionFactorSetContext': '好天氣假日白天',
           'userIntentionFactorSetName': 'set3',
           'intentionFactors': [
             {
               'intentionFactorName': '服務',
-              'intentionFactorStatus': true,
+              'intentionFactorStatus': false,
               'intentionFactorSelectedOption': '不考慮',
             },
             {
               'intentionFactorName': '均消',
-              'intentionFactorStatus': true,
+              'intentionFactorStatus': false,
               'intentionFactorSelectedOption': '不考慮',
             },
             {
               'intentionFactorName': '時間',
-              'intentionFactorStatus': true,
+              'intentionFactorStatus': false,
               'intentionFactorSelectedOption': '不考慮',
             },
             {
               'intentionFactorName': '距離',
-              'intentionFactorStatus': true,
+              'intentionFactorStatus': false,
               'intentionFactorSelectedOption': '不考慮',
             },
             {
@@ -18093,27 +18093,27 @@ class _ProfileScreenState extends State<ProfileScreen> {
           ]
         },
         {
-          'userIntentionFactorSetContext': 'goodweekendnight',
+          'userIntentionFactorSetContext': '好天氣假日晚上',
           'userIntentionFactorSetName': 'set4',
           'intentionFactors': [
             {
               'intentionFactorName': '服務',
-              'intentionFactorStatus': true,
+              'intentionFactorStatus': false,
               'intentionFactorSelectedOption': '不考慮',
             },
             {
               'intentionFactorName': '均消',
-              'intentionFactorStatus': true,
+              'intentionFactorStatus': false,
               'intentionFactorSelectedOption': '不考慮',
             },
             {
               'intentionFactorName': '時間',
-              'intentionFactorStatus': true,
+              'intentionFactorStatus': false,
               'intentionFactorSelectedOption': '不考慮',
             },
             {
               'intentionFactorName': '距離',
-              'intentionFactorStatus': true,
+              'intentionFactorStatus': false,
               'intentionFactorSelectedOption': '不考慮',
             },
             {
@@ -18124,7 +18124,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
           ]
         },
         {
-          'userIntentionFactorSetContext': 'badweekdayday',
+          'userIntentionFactorSetContext': '壞天氣平日白天',
           'userIntentionFactorSetName': 'set5',
           'intentionFactors': [
             {
@@ -18149,13 +18149,13 @@ class _ProfileScreenState extends State<ProfileScreen> {
             },
             {
               'intentionFactorName': '評分',
-              'intentionFactorStatus': true,
+              'intentionFactorStatus': false,
               'intentionFactorSelectedOption': '不考慮',
             },
           ]
         },
         {
-          'userIntentionFactorSetContext': 'badweekdaynight',
+          'userIntentionFactorSetContext': '壞天氣平日晚上',
           'userIntentionFactorSetName': 'set6',
           'intentionFactors': [
             {
@@ -18180,13 +18180,13 @@ class _ProfileScreenState extends State<ProfileScreen> {
             },
             {
               'intentionFactorName': '評分',
-              'intentionFactorStatus': true,
+              'intentionFactorStatus': false,
               'intentionFactorSelectedOption': '不考慮',
             },
           ]
         },
         {
-          'userIntentionFactorSetContext': 'badweekendday',
+          'userIntentionFactorSetContext': '壞天氣假日白天',
           'userIntentionFactorSetName': 'set7',
           'intentionFactors': [
             {
@@ -18196,17 +18196,17 @@ class _ProfileScreenState extends State<ProfileScreen> {
             },
             {
               'intentionFactorName': '均消',
-              'intentionFactorStatus': true,
+              'intentionFactorStatus': false,
               'intentionFactorSelectedOption': '不考慮',
             },
             {
               'intentionFactorName': '時間',
-              'intentionFactorStatus': true,
+              'intentionFactorStatus': false,
               'intentionFactorSelectedOption': '不考慮',
             },
             {
               'intentionFactorName': '距離',
-              'intentionFactorStatus': true,
+              'intentionFactorStatus': false,
               'intentionFactorSelectedOption': '不考慮',
             },
             {
@@ -18217,7 +18217,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
           ]
         },
         {
-          'userIntentionFactorSetContext': 'badweekendnight',
+          'userIntentionFactorSetContext': '壞天氣假日晚上',
           'userIntentionFactorSetName': 'set8',
           'intentionFactors': [
             {
@@ -18227,17 +18227,17 @@ class _ProfileScreenState extends State<ProfileScreen> {
             },
             {
               'intentionFactorName': '均消',
-              'intentionFactorStatus': true,
+              'intentionFactorStatus': false,
               'intentionFactorSelectedOption': '不考慮',
             },
             {
               'intentionFactorName': '時間',
-              'intentionFactorStatus': true,
+              'intentionFactorStatus': false,
               'intentionFactorSelectedOption': '不考慮',
             },
             {
               'intentionFactorName': '距離',
-              'intentionFactorStatus': true,
+              'intentionFactorStatus': false,
               'intentionFactorSelectedOption': '不考慮',
             },
             {
@@ -18278,7 +18278,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
       ],
       'userIntentionFactorSets': [
         {
-          'userIntentionFactorSetContext': 'goodweekdayday',
+          'userIntentionFactorSetContext': '好天氣平日白天',
           'userIntentionFactorSetName': 'set1',
           'intentionFactors': [
             {
@@ -18309,7 +18309,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
           ]
         },
         {
-          'userIntentionFactorSetContext': 'goodweekdaynight',
+          'userIntentionFactorSetContext': '好天氣平日晚上',
           'userIntentionFactorSetName': 'set2',
           'intentionFactors': [
             {
@@ -18340,7 +18340,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
           ]
         },
         {
-          'userIntentionFactorSetContext': 'goodweekendday',
+          'userIntentionFactorSetContext': '好天氣假日白天',
           'userIntentionFactorSetName': 'set3',
           'intentionFactors': [
             {
@@ -18371,7 +18371,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
           ]
         },
         {
-          'userIntentionFactorSetContext': 'goodweekendnight',
+          'userIntentionFactorSetContext': '好天氣假日晚上',
           'userIntentionFactorSetName': 'set4',
           'intentionFactors': [
             {
@@ -18402,7 +18402,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
           ]
         },
         {
-          'userIntentionFactorSetContext': 'badweekdayday',
+          'userIntentionFactorSetContext': '壞天氣平日白天',
           'userIntentionFactorSetName': 'set5',
           'intentionFactors': [
             {
@@ -18433,7 +18433,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
           ]
         },
         {
-          'userIntentionFactorSetContext': 'badweekdaynight',
+          'userIntentionFactorSetContext': '壞天氣假日晚上',
           'userIntentionFactorSetName': 'set6',
           'intentionFactors': [
             {
@@ -18464,7 +18464,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
           ]
         },
         {
-          'userIntentionFactorSetContext': 'badweekendday',
+          'userIntentionFactorSetContext': '壞天氣假日白天',
           'userIntentionFactorSetName': 'set7',
           'intentionFactors': [
             {
@@ -18495,7 +18495,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
           ]
         },
         {
-          'userIntentionFactorSetContext': 'badweekendnight',
+          'userIntentionFactorSetContext': '壞天氣假日晚上',
           'userIntentionFactorSetName': 'set8',
           'intentionFactors': [
             {
@@ -18529,12 +18529,20 @@ class _ProfileScreenState extends State<ProfileScreen> {
     },
   ];
 
+  Future<void> addUserEventField(Map userData) {
+    CollectionReference usersEvent =
+        FirebaseFirestore.instance.collection('usersEvent');
+    return usersEvent.doc(userData['userEmail']).set({
+      'usersEventRecord': [],
+    });
+  }
+
   Future<void> addUsers(Map userData) {
     CollectionReference users = FirebaseFirestore.instance.collection('users');
     return users.doc(userData['userEmail']).set({
       'userEmail': userData['userEmail'],
       'userGroup': userData['userGroup'],
-      'userName': userData['userName'],
+      'userName': userData['userEmail'],
       'userPreference': userData['userPreference'],
       'userIntentionFactorSets': [
         {
@@ -18965,6 +18973,568 @@ class _ProfileScreenState extends State<ProfileScreen> {
     });
   }
 
+  var _user_data_groupWithoutNoPersonalization = [
+    {
+      'userEmail': '001@gmail.com',
+      'userGroup': 'user-initiated',
+      'userName': '001',
+      'userPreference': [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        1,
+        0,
+        0,
+        1,
+        0,
+        1,
+        1
+      ],
+      'userIntentionFactorSets': [
+        {
+          'userIntentionFactorSetContext': 'goodweekdayday',
+          'userIntentionFactorSetName': 'set1',
+          'intentionFactors': [
+            {
+              'intentionFactorName': '服務',
+              'intentionFactorStatus': false,
+              'intentionFactorSelectedOption': '不考慮',
+            },
+            {
+              'intentionFactorName': '均消',
+              'intentionFactorStatus': true,
+              'intentionFactorSelectedOption': '不考慮',
+            },
+            {
+              'intentionFactorName': '時間',
+              'intentionFactorStatus': true,
+              'intentionFactorSelectedOption': '不考慮',
+            },
+            {
+              'intentionFactorName': '距離',
+              'intentionFactorStatus': true,
+              'intentionFactorSelectedOption': '不考慮',
+            },
+            {
+              'intentionFactorName': '評分',
+              'intentionFactorStatus': false,
+              'intentionFactorSelectedOption': '不考慮',
+            },
+          ]
+        },
+        {
+          'userIntentionFactorSetContext': 'goodweekdaynight',
+          'userIntentionFactorSetName': 'set2',
+          'intentionFactors': [
+            {
+              'intentionFactorName': '服務',
+              'intentionFactorStatus': false,
+              'intentionFactorSelectedOption': '不考慮',
+            },
+            {
+              'intentionFactorName': '均消',
+              'intentionFactorStatus': true,
+              'intentionFactorSelectedOption': '不考慮',
+            },
+            {
+              'intentionFactorName': '時間',
+              'intentionFactorStatus': true,
+              'intentionFactorSelectedOption': '不考慮',
+            },
+            {
+              'intentionFactorName': '距離',
+              'intentionFactorStatus': true,
+              'intentionFactorSelectedOption': '不考慮',
+            },
+            {
+              'intentionFactorName': '評分',
+              'intentionFactorStatus': false,
+              'intentionFactorSelectedOption': '不考慮',
+            },
+          ]
+        },
+        {
+          'userIntentionFactorSetContext': 'goodweekendday',
+          'userIntentionFactorSetName': 'set3',
+          'intentionFactors': [
+            {
+              'intentionFactorName': '服務',
+              'intentionFactorStatus': false,
+              'intentionFactorSelectedOption': '不考慮',
+            },
+            {
+              'intentionFactorName': '均消',
+              'intentionFactorStatus': false,
+              'intentionFactorSelectedOption': '不考慮',
+            },
+            {
+              'intentionFactorName': '時間',
+              'intentionFactorStatus': false,
+              'intentionFactorSelectedOption': '不考慮',
+            },
+            {
+              'intentionFactorName': '距離',
+              'intentionFactorStatus': false,
+              'intentionFactorSelectedOption': '不考慮',
+            },
+            {
+              'intentionFactorName': '評分',
+              'intentionFactorStatus': true,
+              'intentionFactorSelectedOption': '不考慮',
+            },
+          ]
+        },
+        {
+          'userIntentionFactorSetContext': 'goodweekendnight',
+          'userIntentionFactorSetName': 'set4',
+          'intentionFactors': [
+            {
+              'intentionFactorName': '服務',
+              'intentionFactorStatus': false,
+              'intentionFactorSelectedOption': '不考慮',
+            },
+            {
+              'intentionFactorName': '均消',
+              'intentionFactorStatus': false,
+              'intentionFactorSelectedOption': '不考慮',
+            },
+            {
+              'intentionFactorName': '時間',
+              'intentionFactorStatus': false,
+              'intentionFactorSelectedOption': '不考慮',
+            },
+            {
+              'intentionFactorName': '距離',
+              'intentionFactorStatus': false,
+              'intentionFactorSelectedOption': '不考慮',
+            },
+            {
+              'intentionFactorName': '評分',
+              'intentionFactorStatus': true,
+              'intentionFactorSelectedOption': '不考慮',
+            },
+          ]
+        },
+        {
+          'userIntentionFactorSetContext': 'badweekdayday',
+          'userIntentionFactorSetName': 'set5',
+          'intentionFactors': [
+            {
+              'intentionFactorName': '服務',
+              'intentionFactorStatus': true,
+              'intentionFactorSelectedOption': '不考慮',
+            },
+            {
+              'intentionFactorName': '均消',
+              'intentionFactorStatus': true,
+              'intentionFactorSelectedOption': '不考慮',
+            },
+            {
+              'intentionFactorName': '時間',
+              'intentionFactorStatus': true,
+              'intentionFactorSelectedOption': '不考慮',
+            },
+            {
+              'intentionFactorName': '距離',
+              'intentionFactorStatus': true,
+              'intentionFactorSelectedOption': '不考慮',
+            },
+            {
+              'intentionFactorName': '評分',
+              'intentionFactorStatus': false,
+              'intentionFactorSelectedOption': '不考慮',
+            },
+          ]
+        },
+        {
+          'userIntentionFactorSetContext': 'badweekdaynight',
+          'userIntentionFactorSetName': 'set6',
+          'intentionFactors': [
+            {
+              'intentionFactorName': '服務',
+              'intentionFactorStatus': true,
+              'intentionFactorSelectedOption': '不考慮',
+            },
+            {
+              'intentionFactorName': '均消',
+              'intentionFactorStatus': true,
+              'intentionFactorSelectedOption': '不考慮',
+            },
+            {
+              'intentionFactorName': '時間',
+              'intentionFactorStatus': true,
+              'intentionFactorSelectedOption': '不考慮',
+            },
+            {
+              'intentionFactorName': '距離',
+              'intentionFactorStatus': true,
+              'intentionFactorSelectedOption': '不考慮',
+            },
+            {
+              'intentionFactorName': '評分',
+              'intentionFactorStatus': false,
+              'intentionFactorSelectedOption': '不考慮',
+            },
+          ]
+        },
+        {
+          'userIntentionFactorSetContext': 'badweekendday',
+          'userIntentionFactorSetName': 'set7',
+          'intentionFactors': [
+            {
+              'intentionFactorName': '服務',
+              'intentionFactorStatus': true,
+              'intentionFactorSelectedOption': '不考慮',
+            },
+            {
+              'intentionFactorName': '均消',
+              'intentionFactorStatus': false,
+              'intentionFactorSelectedOption': '不考慮',
+            },
+            {
+              'intentionFactorName': '時間',
+              'intentionFactorStatus': false,
+              'intentionFactorSelectedOption': '不考慮',
+            },
+            {
+              'intentionFactorName': '距離',
+              'intentionFactorStatus': false,
+              'intentionFactorSelectedOption': '不考慮',
+            },
+            {
+              'intentionFactorName': '評分',
+              'intentionFactorStatus': true,
+              'intentionFactorSelectedOption': '不考慮',
+            },
+          ]
+        },
+        {
+          'userIntentionFactorSetContext': 'badweekendnight',
+          'userIntentionFactorSetName': 'set8',
+          'intentionFactors': [
+            {
+              'intentionFactorName': '服務',
+              'intentionFactorStatus': true,
+              'intentionFactorSelectedOption': '不考慮',
+            },
+            {
+              'intentionFactorName': '均消',
+              'intentionFactorStatus': false,
+              'intentionFactorSelectedOption': '不考慮',
+            },
+            {
+              'intentionFactorName': '時間',
+              'intentionFactorStatus': false,
+              'intentionFactorSelectedOption': '不考慮',
+            },
+            {
+              'intentionFactorName': '距離',
+              'intentionFactorStatus': false,
+              'intentionFactorSelectedOption': '不考慮',
+            },
+            {
+              'intentionFactorName': '評分',
+              'intentionFactorStatus': true,
+              'intentionFactorSelectedOption': '不考慮',
+            },
+          ]
+        },
+      ],
+    },
+  ];
+
+  var _user_data_groupNoPersonalization = [
+    {
+      'userEmail': '004@gmail.com',
+      'userGroup': 'no-personalization',
+      'userName': '004',
+      'userPreference': [
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      'userIntentionFactorSets': [
+        {
+          'userIntentionFactorSetContext': 'goodweekdayday',
+          'userIntentionFactorSetName': 'set1',
+          'intentionFactors': [
+            {
+              'intentionFactorName': '服務',
+              'intentionFactorStatus': true,
+              'intentionFactorSelectedOption': '不考慮',
+            },
+            {
+              'intentionFactorName': '均消',
+              'intentionFactorStatus': true,
+              'intentionFactorSelectedOption': '不考慮',
+            },
+            {
+              'intentionFactorName': '時間',
+              'intentionFactorStatus': true,
+              'intentionFactorSelectedOption': '不考慮',
+            },
+            {
+              'intentionFactorName': '距離',
+              'intentionFactorStatus': true,
+              'intentionFactorSelectedOption': '不考慮',
+            },
+            {
+              'intentionFactorName': '評分',
+              'intentionFactorStatus': true,
+              'intentionFactorSelectedOption': '不考慮',
+            },
+          ]
+        },
+        {
+          'userIntentionFactorSetContext': 'goodweekdaynight',
+          'userIntentionFactorSetName': 'set2',
+          'intentionFactors': [
+            {
+              'intentionFactorName': '服務',
+              'intentionFactorStatus': true,
+              'intentionFactorSelectedOption': '不考慮',
+            },
+            {
+              'intentionFactorName': '均消',
+              'intentionFactorStatus': true,
+              'intentionFactorSelectedOption': '不考慮',
+            },
+            {
+              'intentionFactorName': '時間',
+              'intentionFactorStatus': true,
+              'intentionFactorSelectedOption': '不考慮',
+            },
+            {
+              'intentionFactorName': '距離',
+              'intentionFactorStatus': true,
+              'intentionFactorSelectedOption': '不考慮',
+            },
+            {
+              'intentionFactorName': '評分',
+              'intentionFactorStatus': true,
+              'intentionFactorSelectedOption': '不考慮',
+            },
+          ]
+        },
+        {
+          'userIntentionFactorSetContext': 'goodweekendday',
+          'userIntentionFactorSetName': 'set3',
+          'intentionFactors': [
+            {
+              'intentionFactorName': '服務',
+              'intentionFactorStatus': true,
+              'intentionFactorSelectedOption': '不考慮',
+            },
+            {
+              'intentionFactorName': '均消',
+              'intentionFactorStatus': true,
+              'intentionFactorSelectedOption': '不考慮',
+            },
+            {
+              'intentionFactorName': '時間',
+              'intentionFactorStatus': true,
+              'intentionFactorSelectedOption': '不考慮',
+            },
+            {
+              'intentionFactorName': '距離',
+              'intentionFactorStatus': true,
+              'intentionFactorSelectedOption': '不考慮',
+            },
+            {
+              'intentionFactorName': '評分',
+              'intentionFactorStatus': true,
+              'intentionFactorSelectedOption': '不考慮',
+            },
+          ]
+        },
+        {
+          'userIntentionFactorSetContext': 'goodweekendnight',
+          'userIntentionFactorSetName': 'set4',
+          'intentionFactors': [
+            {
+              'intentionFactorName': '服務',
+              'intentionFactorStatus': true,
+              'intentionFactorSelectedOption': '不考慮',
+            },
+            {
+              'intentionFactorName': '均消',
+              'intentionFactorStatus': true,
+              'intentionFactorSelectedOption': '不考慮',
+            },
+            {
+              'intentionFactorName': '時間',
+              'intentionFactorStatus': true,
+              'intentionFactorSelectedOption': '不考慮',
+            },
+            {
+              'intentionFactorName': '距離',
+              'intentionFactorStatus': true,
+              'intentionFactorSelectedOption': '不考慮',
+            },
+            {
+              'intentionFactorName': '評分',
+              'intentionFactorStatus': true,
+              'intentionFactorSelectedOption': '不考慮',
+            },
+          ]
+        },
+        {
+          'userIntentionFactorSetContext': 'badweekdayday',
+          'userIntentionFactorSetName': 'set5',
+          'intentionFactors': [
+            {
+              'intentionFactorName': '服務',
+              'intentionFactorStatus': true,
+              'intentionFactorSelectedOption': '不考慮',
+            },
+            {
+              'intentionFactorName': '均消',
+              'intentionFactorStatus': true,
+              'intentionFactorSelectedOption': '不考慮',
+            },
+            {
+              'intentionFactorName': '時間',
+              'intentionFactorStatus': true,
+              'intentionFactorSelectedOption': '不考慮',
+            },
+            {
+              'intentionFactorName': '距離',
+              'intentionFactorStatus': true,
+              'intentionFactorSelectedOption': '不考慮',
+            },
+            {
+              'intentionFactorName': '評分',
+              'intentionFactorStatus': true,
+              'intentionFactorSelectedOption': '不考慮',
+            },
+          ]
+        },
+        {
+          'userIntentionFactorSetContext': 'badweekdaynight',
+          'userIntentionFactorSetName': 'set6',
+          'intentionFactors': [
+            {
+              'intentionFactorName': '服務',
+              'intentionFactorStatus': true,
+              'intentionFactorSelectedOption': '不考慮',
+            },
+            {
+              'intentionFactorName': '均消',
+              'intentionFactorStatus': true,
+              'intentionFactorSelectedOption': '不考慮',
+            },
+            {
+              'intentionFactorName': '時間',
+              'intentionFactorStatus': true,
+              'intentionFactorSelectedOption': '不考慮',
+            },
+            {
+              'intentionFactorName': '距離',
+              'intentionFactorStatus': true,
+              'intentionFactorSelectedOption': '不考慮',
+            },
+            {
+              'intentionFactorName': '評分',
+              'intentionFactorStatus': true,
+              'intentionFactorSelectedOption': '不考慮',
+            },
+          ]
+        },
+        {
+          'userIntentionFactorSetContext': 'badweekendday',
+          'userIntentionFactorSetName': 'set7',
+          'intentionFactors': [
+            {
+              'intentionFactorName': '服務',
+              'intentionFactorStatus': true,
+              'intentionFactorSelectedOption': '不考慮',
+            },
+            {
+              'intentionFactorName': '均消',
+              'intentionFactorStatus': true,
+              'intentionFactorSelectedOption': '不考慮',
+            },
+            {
+              'intentionFactorName': '時間',
+              'intentionFactorStatus': true,
+              'intentionFactorSelectedOption': '不考慮',
+            },
+            {
+              'intentionFactorName': '距離',
+              'intentionFactorStatus': true,
+              'intentionFactorSelectedOption': '不考慮',
+            },
+            {
+              'intentionFactorName': '評分',
+              'intentionFactorStatus': true,
+              'intentionFactorSelectedOption': '不考慮',
+            },
+          ]
+        },
+        {
+          'userIntentionFactorSetContext': 'badweekendnight',
+          'userIntentionFactorSetName': 'set8',
+          'intentionFactors': [
+            {
+              'intentionFactorName': '服務',
+              'intentionFactorStatus': true,
+              'intentionFactorSelectedOption': '不考慮',
+            },
+            {
+              'intentionFactorName': '均消',
+              'intentionFactorStatus': true,
+              'intentionFactorSelectedOption': '不考慮',
+            },
+            {
+              'intentionFactorName': '時間',
+              'intentionFactorStatus': true,
+              'intentionFactorSelectedOption': '不考慮',
+            },
+            {
+              'intentionFactorName': '距離',
+              'intentionFactorStatus': true,
+              'intentionFactorSelectedOption': '不考慮',
+            },
+            {
+              'intentionFactorName': '評分',
+              'intentionFactorStatus': true,
+              'intentionFactorSelectedOption': '不考慮',
+            },
+          ]
+        },
+      ],
+    },
+  ];
+
   @override
   Widget build(BuildContext context) {
     return Consumer<Login>(
@@ -18973,10 +19543,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
             buildContainer(
-                context,
-                '使用者intention factor set name',
-                login.userData['userIntentionFactorSets'][0]
-                    ['userIntentionFactorSetName']),
+              context,
+              '使用者intention factor set name',
+              login.selectedIntentionFactorSetName,
+            ),
             buildContainer(
               context,
               '使用者intention factor set context',
@@ -19021,6 +19591,16 @@ class _ProfileScreenState extends State<ProfileScreen> {
             //     }
             //   },
             //   child: Text('upload fake user data'),
+            // ),
+            // TextButton(
+            //   onPressed: () async {
+            //     await Firebase.initializeApp();
+            //     for (var i = 0; i < _user_data.length; i++) {
+            //       addUserEventField(_user_data[i]);
+            //       print(_user_data[i]['userEmail']);
+            //     }
+            //   },
+            //   child: Text('upload user data event'),
             // ),
           ],
         );

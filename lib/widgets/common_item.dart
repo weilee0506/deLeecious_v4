@@ -22,7 +22,7 @@ class CommonItem extends StatelessWidget {
           ),
           Container(
             child: Text(
-              '請任意選擇過濾餐廳的因素',
+              '請任意填入傾向因素以過濾餐廳',
               style: Theme.of(context).textTheme.headline5,
               textAlign: TextAlign.center,
             ),

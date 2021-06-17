@@ -193,7 +193,7 @@ class _IntentionFactorSetState extends State<IntentionFactorSet> {
         // }
         return login.selectedIntentionFactorSet == null
             ? Center(
-                child: Text('select a set'),
+                child: Text('請選擇一組傾向因素組合'),
               )
             : Expanded(
                 child: Container(
@@ -446,7 +446,7 @@ class _IntentionFactorSetState extends State<IntentionFactorSet> {
             // }
             return login.selectedIntentionFactorSet == null
                 ? Center(
-                    child: Text('select a set'),
+                    child: Text('請選擇一組傾向因素組合'),
                   )
                 : Expanded(
                     child: Container(
