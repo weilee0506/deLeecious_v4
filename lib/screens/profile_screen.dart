@@ -19541,12 +19541,12 @@ class _ProfileScreenState extends State<ProfileScreen> {
           children: <Widget>[
             buildContainer(
               context,
-              '使用者intention factor set name',
+              '使用者傾向因素組合名稱',
               login.selectedIntentionFactorSetName,
             ),
             buildContainer(
               context,
-              '使用者intention factor set context',
+              '使用者清項因素組合情境',
               login.currentContext,
             ),
             buildContainer(context, '使用者姓名', login.userData['userName']),
@@ -19556,7 +19556,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
               onPressed: () {
                 logout();
               },
-              child: Text('logout'),
+              child: Text('登出'),
             ),
             // TextButton(
             //   onPressed: () {

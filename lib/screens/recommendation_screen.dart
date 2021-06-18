@@ -268,18 +268,18 @@ class _RecommendationScreenState extends State<RecommendationScreen> {
       });
     }
 
-    if (timeSelectedOption == '少於30分鐘') {
+    if (timeSelectedOption == '少於1小時') {
       this.candidateListFilterPreference.forEach((element) {
-        if (double.parse(element['distance']) < 0.5) {
+        if (double.parse(element['distance']) < 1) {
           this.candidateListFilterTime.add(element);
         }
       });
     }
 
-    if (timeSelectedOption == '30分鐘至2小時') {
+    if (timeSelectedOption == '1小時至2小時') {
       this.candidateListFilterPreference.forEach((element) {
-        if (double.parse(element['distance']) > 0.5 &&
-            double.parse(element['distance']) < 2) {
+        if (double.parse(element['distance']) > 1 &&
+            double.parse(element['distance']) < 2.5) {
           this.candidateListFilterTime.add(element);
         }
       });
@@ -292,18 +292,18 @@ class _RecommendationScreenState extends State<RecommendationScreen> {
         });
       }
 
-      if (distanceSelectedOption == '少於500公尺') {
+      if (distanceSelectedOption == '少於1000公尺') {
         this.candidateListFilterTime.forEach((element) {
-          if (double.parse(element['distance']) < 0.5) {
+          if (double.parse(element['distance']) < 1) {
             this.candidateListFilterDistance.add(element);
           }
         });
       }
 
-      if (distanceSelectedOption == '500至2000公尺') {
+      if (distanceSelectedOption == '1000至2500公尺') {
         this.candidateListFilterTime.forEach((element) {
-          if (double.parse(element['distance']) > 0.5 &&
-              double.parse(element['distance']) < 2) {
+          if (double.parse(element['distance']) > 1 &&
+              double.parse(element['distance']) < 2.5) {
             this.candidateListFilterDistance.add(element);
           }
         });
