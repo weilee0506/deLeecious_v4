@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_core/firebase_core.dart';
 
 import '../provider/login.dart';
 
@@ -18972,10 +18973,16 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
   var _user_data_groupWithoutNoPersonalization = [
     {
-      'userEmail': '001@gmail.com',
-      'userGroup': 'user-initiated',
-      'userName': '001',
+      'userEmail': 'serenechu0323@gmail.com',
+      'userGroup': 'mix-initiated',
+      'userName': 'serenechu0323@gmail.com',
       'userPreference': [
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
         0,
         0,
         0,
@@ -18983,24 +18990,18 @@ class _ProfileScreenState extends State<ProfileScreen> {
         0,
         0,
         1,
-        1,
         0,
         0,
         0,
         0,
         0,
-        1,
-        1,
-        0,
-        0,
-        1,
         0,
         1,
         1
       ],
       'userIntentionFactorSets': [
         {
-          'userIntentionFactorSetContext': 'goodweekdayday',
+          'userIntentionFactorSetContext': '好天氣平日白天',
           'userIntentionFactorSetName': 'set1',
           'intentionFactors': [
             {
@@ -19031,7 +19032,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
           ]
         },
         {
-          'userIntentionFactorSetContext': 'goodweekdaynight',
+          'userIntentionFactorSetContext': '好天氣平日晚上',
           'userIntentionFactorSetName': 'set2',
           'intentionFactors': [
             {
@@ -19062,7 +19063,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
           ]
         },
         {
-          'userIntentionFactorSetContext': 'goodweekendday',
+          'userIntentionFactorSetContext': '好天氣假日白天',
           'userIntentionFactorSetName': 'set3',
           'intentionFactors': [
             {
@@ -19093,7 +19094,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
           ]
         },
         {
-          'userIntentionFactorSetContext': 'goodweekendnight',
+          'userIntentionFactorSetContext': '好天氣假日晚上',
           'userIntentionFactorSetName': 'set4',
           'intentionFactors': [
             {
@@ -19124,7 +19125,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
           ]
         },
         {
-          'userIntentionFactorSetContext': 'badweekdayday',
+          'userIntentionFactorSetContext': '壞天氣平日白天',
           'userIntentionFactorSetName': 'set5',
           'intentionFactors': [
             {
@@ -19155,7 +19156,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
           ]
         },
         {
-          'userIntentionFactorSetContext': 'badweekdaynight',
+          'userIntentionFactorSetContext': '壞天氣平日晚上',
           'userIntentionFactorSetName': 'set6',
           'intentionFactors': [
             {
@@ -19186,7 +19187,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
           ]
         },
         {
-          'userIntentionFactorSetContext': 'badweekendday',
+          'userIntentionFactorSetContext': '壞天氣假日白天',
           'userIntentionFactorSetName': 'set7',
           'intentionFactors': [
             {
@@ -19217,7 +19218,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
           ]
         },
         {
-          'userIntentionFactorSetContext': 'badweekendnight',
+          'userIntentionFactorSetContext': '壞天氣假日晚上',
           'userIntentionFactorSetName': 'set8',
           'intentionFactors': [
             {
@@ -19253,10 +19254,21 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
   var _user_data_groupNoPersonalization = [
     {
-      'userEmail': '004@gmail.com',
+      'userEmail': 'nina910720@gmail.com',
       'userGroup': 'no-personalization',
-      'userName': '004',
+      'userName': 'nina910720@gmail.com',
       'userPreference': [
+        1,
+        1,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        1,
+        0,
+        1,
         1,
         0,
         0,
@@ -19264,24 +19276,13 @@ class _ProfileScreenState extends State<ProfileScreen> {
         0,
         0,
         0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
+        1,
         0,
         0
       ],
       'userIntentionFactorSets': [
         {
-          'userIntentionFactorSetContext': 'goodweekdayday',
+          'userIntentionFactorSetContext': '好天氣平日白天',
           'userIntentionFactorSetName': 'set1',
           'intentionFactors': [
             {
@@ -19312,7 +19313,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
           ]
         },
         {
-          'userIntentionFactorSetContext': 'goodweekdaynight',
+          'userIntentionFactorSetContext': '好天氣平日晚上',
           'userIntentionFactorSetName': 'set2',
           'intentionFactors': [
             {
@@ -19343,7 +19344,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
           ]
         },
         {
-          'userIntentionFactorSetContext': 'goodweekendday',
+          'userIntentionFactorSetContext': '好天氣假日白天',
           'userIntentionFactorSetName': 'set3',
           'intentionFactors': [
             {
@@ -19374,7 +19375,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
           ]
         },
         {
-          'userIntentionFactorSetContext': 'goodweekendnight',
+          'userIntentionFactorSetContext': '好天氣假日晚上',
           'userIntentionFactorSetName': 'set4',
           'intentionFactors': [
             {
@@ -19405,7 +19406,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
           ]
         },
         {
-          'userIntentionFactorSetContext': 'badweekdayday',
+          'userIntentionFactorSetContext': '壞天氣平日白天',
           'userIntentionFactorSetName': 'set5',
           'intentionFactors': [
             {
@@ -19436,7 +19437,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
           ]
         },
         {
-          'userIntentionFactorSetContext': 'badweekdaynight',
+          'userIntentionFactorSetContext': '壞天氣平日晚上',
           'userIntentionFactorSetName': 'set6',
           'intentionFactors': [
             {
@@ -19467,7 +19468,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
           ]
         },
         {
-          'userIntentionFactorSetContext': 'badweekendday',
+          'userIntentionFactorSetContext': '壞天氣假日白天',
           'userIntentionFactorSetName': 'set7',
           'intentionFactors': [
             {
@@ -19498,7 +19499,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
           ]
         },
         {
-          'userIntentionFactorSetContext': 'badweekendnight',
+          'userIntentionFactorSetContext': '壞天氣假日晚上',
           'userIntentionFactorSetName': 'set8',
           'intentionFactors': [
             {
@@ -19531,6 +19532,79 @@ class _ProfileScreenState extends State<ProfileScreen> {
       ],
     },
   ];
+
+  void outputUserEventCount() async {
+    int start = 0;
+    int over20 = 0;
+    int userInitiated = 0;
+    int systemInitiated = 0;
+    int mixInitiated = 0;
+    int noPersonalization = 0;
+
+    CollectionReference usersEvent =
+        FirebaseFirestore.instance.collection('usersEvent');
+    CollectionReference users = FirebaseFirestore.instance.collection('users');
+
+    await usersEvent.get().then((value) => value.docs.forEach((element) {
+          int selectCount = 0;
+          Map doc = element.data();
+          for (int i = 0; i < doc['usersEventRecord'].length; i++) {
+            if (doc['usersEventRecord'][i]['eventType'] == 'selectRestaurant') {
+              selectCount++;
+            }
+          }
+
+          // print('${element.reference.id}:$selectCount');
+          // if (selectCount < 20) {
+          print('${element.reference.id}:$selectCount');
+          // }
+
+          // print(groupName);
+          if (selectCount != 0) {
+            if (selectCount > 20 || selectCount == 20) {
+              over20++;
+            }
+            start++;
+            users.doc(element.reference.id).get().then((value) {
+              print('${element.reference.id} : ${value['userGroup']}');
+              if (value['userGroup'] == 'user-initiated') {
+                // print('a1');
+                userInitiated++;
+                // print('a2');
+              }
+              if (value['userGroup'] == 'system-initiated') {
+                // print('b1');
+                systemInitiated++;
+                // print('b2');
+              }
+              if (value['userGroup'] == 'mix-initiated') {
+                // print('c1');
+                mixInitiated++;
+                // print('c2');
+              }
+              if (value['userGroup'] == 'no-personalization') {
+                // print('d1');
+                noPersonalization++;
+                // print('d2');
+              }
+
+              print('user initiated 開始做的人數：$userInitiated');
+              print('system initiated 開始做的人數：$systemInitiated');
+              print('mix initiated 開始做的人數：$mixInitiated');
+              print('no personalization 開始做的人數：$noPersonalization');
+            });
+          }
+        }));
+    print('--------------------------------------------------');
+    print('超過20次的人數：$over20');
+    print('開始做實驗的人數：${start - 1}');
+    print('--------------------------------------------------');
+
+    // print('user initiated 開始做的人數：$userInitiated');
+    // print('system initiated 開始做的人數：$systemInitiated');
+    // print('mix initiated 開始做的人數：$mixInitiated');
+    // print('no personalization 開始做的人數：$noPersonalization');
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -19579,26 +19653,37 @@ class _ProfileScreenState extends State<ProfileScreen> {
             //   },
             //   child: Text('upload data'),
             // ),
-            // TextButton(
-            //   onPressed: () async {
-            //     await Firebase.initializeApp();
-            //     for (var i = 0; i <= _user_data.length; i++) {
-            //       addUsers(_user_data[i]);
-            //       print(_user_data[i]['userEmail']);
-            //     }
-            //   },
-            //   child: Text('upload fake user data'),
-            // ),
-            // TextButton(
-            //   onPressed: () async {
-            //     await Firebase.initializeApp();
-            //     for (var i = 0; i < _user_data.length; i++) {
-            //       addUserEventField(_user_data[i]);
-            //       print(_user_data[i]['userEmail']);
-            //     }
-            //   },
-            //   child: Text('upload user data event'),
-            // ),
+            TextButton(
+              onPressed: () async {
+                await Firebase.initializeApp();
+                for (var i = 0;
+                    i < _user_data_groupNoPersonalization.length;
+                    i++) {
+                  addUsers(_user_data_groupNoPersonalization[i]);
+                  print(_user_data_groupNoPersonalization[i]['userEmail']);
+                }
+              },
+              child: Text('upload fake user data'),
+            ),
+            TextButton(
+              onPressed: () async {
+                await Firebase.initializeApp();
+                for (var i = 0;
+                    i < _user_data_groupNoPersonalization.length;
+                    i++) {
+                  addUserEventField(_user_data_groupNoPersonalization[i]);
+                  print(_user_data_groupNoPersonalization[i]['userEmail']);
+                }
+              },
+              child: Text('upload user data event'),
+            ),
+            TextButton(
+              onPressed: () async {
+                await Firebase.initializeApp();
+                outputUserEventCount();
+              },
+              child: Text('get usersEventRecordCount'),
+            ),
           ],
         );
       },

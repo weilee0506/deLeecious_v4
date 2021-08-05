@@ -41,9 +41,6 @@ class _AdaptiveContextDropdownState extends State<AdaptiveContextDropdown> {
   @override
   void initState() {
     super.initState();
-    Geolocator.getCurrentPosition().then((currloc) {
-      _currentLocation = currloc;
-    });
   }
 
   void get_context() async {
